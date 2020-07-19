@@ -1,0 +1,132 @@
+/*
+ * Copyright (C) 2020 Dipl.-Inform. Kai Hofmann. All rights reserved!
+ */
+package de.powerstat.validation.values;
+
+
+import java.util.Objects;
+
+
+/**
+ * {CLASSNAME}.
+ *
+ * Not DSGVO relevant.
+ */
+public final class {CLASSNAME} implements Comparable<{CLASSNAME}>
+ {
+  /**
+   * {CLASSNAME}.
+   */
+  private final int {FIELDNAME};
+
+
+  /**
+   * Constructor.
+   *
+   * @param {FIELDNAME} {CLASSNAME}
+   * @throws IndexOutOfBoundsException When the {FIELDNAME} is out of bounds
+   */
+  public {CLASSNAME}(final int {FIELDNAME})
+   {
+    super();
+    if (({FIELDNAME} < 0) || ({FIELDNAME} > 4711))
+     {
+      throw new IndexOutOfBoundsException("{CLASSNAME} illegal value!!"); //$NON-NLS-1$
+     }
+    this.{FIELDNAME} = {FIELDNAME};
+   }
+
+
+  /**
+   * {CLASSNAME} factory.
+   *
+   * @param {FIELDNAME} {CLASSNAME}
+   * @return {CLASSNAME} object
+   */
+  public static {CLASSNAME} of(final int {FIELDNAME})
+   {
+    return new {CLASSNAME}({FIELDNAME});
+   }
+
+
+  /**
+   * Get {FIELDNAME}.
+   *
+   * @return {CLASSNAME}
+   */
+  public int get{CLASSNAME}()
+   {
+    return this.{FIELDNAME};
+   }
+
+
+  /**
+   * Calculate hash code.
+   *
+   * @return Hash
+   * @see java.lang.Object#hashCode()
+   */
+  @Override
+  public int hashCode()
+   {
+    return Integer.hashCode(this.{FIELDNAME});
+   }
+
+
+  /**
+   * Is equal with another object.
+   *
+   * @param obj Object
+   * @return true when equal, false otherwise
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  @Override
+  public boolean equals(final Object obj)
+   {
+    if (this == obj)
+     {
+      return true;
+     }
+    if (!(obj instanceof {CLASSNAME}))
+     {
+      return false;
+     }
+    final {CLASSNAME} other = ({CLASSNAME})obj;
+    return this.{FIELDNAME} == other.{FIELDNAME};
+   }
+
+
+  /**
+   * Returns the string representation of this {CLASSNAME}.
+   *
+   * The exact details of this representation are unspecified and subject to change, but the following may be regarded as typical:
+   *
+   * "{CLASSNAME}[{FIELDNAME}=Example1]"
+   *
+   * @return String representation of this {CLASSNAME}
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public String toString()
+   {
+    final StringBuilder builder = new StringBuilder();
+    builder.append("{CLASSNAME}[{FIELDNAME}=").append(this.{FIELDNAME}).append(']'); //$NON-NLS-1$
+    return builder.toString();
+   }
+
+
+  /**
+   * Compare with another object.
+   *
+   * @param obj Object to compare with
+   * @return 0: equal; 1: greater; -1: smaller
+   * @see java.lang.Comparable#compareTo(java.lang.Object)
+   */
+  @Override
+  public int compareTo(final {CLASSNAME} obj)
+   {
+    Objects.requireNonNull(obj, "obj"); //$NON-NLS-1$
+    return Integer.compare(this.{FIELDNAME}, obj.{FIELDNAME});
+   }
+
+ }

@@ -1,0 +1,135 @@
+/*
+ * Copyright (C) 2020 Dipl.-Inform. Kai Hofmann. All rights reserved!
+ */
+package de.powerstat.validation.values.test;
+
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import de.powerstat.validation.values.{CLASSNAME};
+
+
+/**
+ * {CLASSNAME} tests.
+ */
+public class {CLASSNAME}Tests
+ {
+  /**
+   * Default constructor.
+   */
+  public {CLASSNAME}Tests()
+   {
+    super();
+   }
+
+
+  /**
+   * Is {FIELDNAME}.
+   *
+   * @param {FIELDNAME} {CLASSNAME}
+   */
+  @ParameterizedTest
+  @ValueSource(ints = {-1, 1, 2020})
+  public void is{CLASSNAME}(final int {FIELDNAME})
+   {
+    assertEquals({FIELDNAME}, {CLASSNAME}.of({FIELDNAME}).get{CLASSNAME}(), "Not a {FIELDNAME}!"); //$NON-NLS-1$
+   }
+
+
+  /**
+   * Is not a {FIELDNAME}.
+   *
+   * @param {FIELDNAME} {CLASSNAME}
+   */
+  @ParameterizedTest
+  @ValueSource(ints = {0})
+  public void isNotA{CLASSNAME}(final int {FIELDNAME})
+   {
+    assertThrows(IndexOutOfBoundsException.class, () ->
+     {
+      /* final {CLASSNAME} {FIELDNAME} = */ {CLASSNAME}.of({FIELDNAME});
+     }
+    );
+   }
+
+
+  /**
+   * Test hash code.
+   */
+  @Test
+  public void testHashCode()
+   {
+    final {CLASSNAME} {FIELDNAME}1 = {CLASSNAME}.of(1);
+    final {CLASSNAME} {FIELDNAME}2 = {CLASSNAME}.of(1);
+    final {CLASSNAME} {FIELDNAME}3 = {CLASSNAME}.of(2);
+    assertAll("testHashCode", //$NON-NLS-1$
+      () -> assertEquals({FIELDNAME}1.hashCode(), {FIELDNAME}2.hashCode(), "hashCodes are not equal"), //$NON-NLS-1$
+      () -> assertNotEquals({FIELDNAME}1.hashCode(), {FIELDNAME}3.hashCode(), "hashCodes are equal") //$NON-NLS-1$
+    );
+   }
+
+
+  /**
+   * Test equals.
+   */
+  @Test
+  public void testEquals()
+   {
+    final {CLASSNAME} {FIELDNAME}1 = {CLASSNAME}.of(1);
+    final {CLASSNAME} {FIELDNAME}2 = {CLASSNAME}.of(1);
+    final {CLASSNAME} {FIELDNAME}3 = {CLASSNAME}.of(2);
+    final {CLASSNAME} {FIELDNAME}4 = {CLASSNAME}.of(1);
+    assertAll("testEquals", //$NON-NLS-1$
+      () -> assertTrue({FIELDNAME}1.equals({FIELDNAME}1), "{FIELDNAME}11 is not equal"), //$NON-NLS-1$
+      () -> assertTrue({FIELDNAME}1.equals({FIELDNAME}2), "{FIELDNAME}12 are not equal"), //$NON-NLS-1$
+      () -> assertTrue({FIELDNAME}2.equals({FIELDNAME}1), "{FIELDNAME}21 are not equal"), //$NON-NLS-1$
+      () -> assertTrue({FIELDNAME}2.equals({FIELDNAME}4), "{FIELDNAME}24 are not equal"), //$NON-NLS-1$
+      () -> assertTrue({FIELDNAME}1.equals({FIELDNAME}4), "{FIELDNAME}14 are not equal"), //$NON-NLS-1$
+      () -> assertFalse({FIELDNAME}1.equals({FIELDNAME}3), "{FIELDNAME}13 are equal"), //$NON-NLS-1$
+      () -> assertFalse({FIELDNAME}3.equals({FIELDNAME}1), "{FIELDNAME}31 are equal"), //$NON-NLS-1$
+      () -> assertFalse({FIELDNAME}1.equals(null), "{FIELDNAME}10 is equal") //$NON-NLS-1$
+    );
+   }
+
+
+  /**
+   * Test toString.
+   */
+  @Test
+  public void testToString()
+   {
+    final {CLASSNAME} {FIELDNAME} = {CLASSNAME}.of(1);
+    assertEquals("{CLASSNAME}[{FIELDNAME}=1]", {FIELDNAME}.toString(), "toString not equal"); //$NON-NLS-1$ //$NON-NLS-2$
+   }
+
+
+  /**
+   * Test compareTo.
+   */
+  @Test
+  public void testCompareTo()
+   {
+    final {CLASSNAME} {FIELDNAME}1 = {CLASSNAME}.of(1);
+    final {CLASSNAME} {FIELDNAME}2 = {CLASSNAME}.of(1);
+    final {CLASSNAME} {FIELDNAME}3 = {CLASSNAME}.of(2);
+    final {CLASSNAME} {FIELDNAME}4 = {CLASSNAME}.of(3);
+    final {CLASSNAME} {FIELDNAME}5 = {CLASSNAME}.of(1);
+    assertAll("testCompareTo", //$NON-NLS-1$
+      () -> assertTrue({FIELDNAME}1.compareTo({FIELDNAME}2) == -{FIELDNAME}2.compareTo({FIELDNAME}1), "reflexive1"), //$NON-NLS-1$
+      () -> assertTrue({FIELDNAME}1.compareTo({FIELDNAME}3) == -{FIELDNAME}3.compareTo({FIELDNAME}1), "reflexive2"), //$NON-NLS-1$
+      () -> assertTrue(({FIELDNAME}4.compareTo({FIELDNAME}3) > 0) && ({FIELDNAME}3.compareTo({FIELDNAME}1) > 0) && ({FIELDNAME}4.compareTo({FIELDNAME}1) > 0), "transitive1"), //$NON-NLS-1$
+      () -> assertTrue(({FIELDNAME}1.compareTo({FIELDNAME}2) == 0) && (Math.abs({FIELDNAME}1.compareTo({FIELDNAME}5)) == Math.abs({FIELDNAME}2.compareTo({FIELDNAME}5))), "sgn1"), //$NON-NLS-1$
+      () -> assertTrue(({FIELDNAME}1.compareTo({FIELDNAME}2) == 0) && {FIELDNAME}1.equals({FIELDNAME}2), "equals") //$NON-NLS-1$
+    );
+   }
+
+ }
