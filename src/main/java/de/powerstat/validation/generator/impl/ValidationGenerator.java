@@ -116,14 +116,14 @@ public final class ValidationGenerator
     dirClass.mkdirs();
     try (PrintWriter out = new PrintWriter(dirClass.getAbsolutePath() + File.separator + this.className + ".java")) //$NON-NLS-1$
      {
-      out.println(templClass.get(CLASS));
+      out.print(templClass.get(CLASS));
      }
 
     final File dirTests = new File(this.outputPath + "/de/powerstat/validation/values/test"); //$NON-NLS-1$
     dirTests.mkdirs();
     try (PrintWriter out = new PrintWriter(dirTests.getAbsolutePath() + File.separator + this.className + "Tests.java")) //$NON-NLS-1$
      {
-      out.println(templTests.get(TESTS));
+      out.print(templTests.get(TESTS));
      }
 
    }

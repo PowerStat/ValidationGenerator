@@ -10,10 +10,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigInteger;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.DigestOutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -123,24 +124,24 @@ public class ValidationGeneratorTests
   public void getclasses(final String templateType) throws IOException, NoSuchAlgorithmException
    {
     final Map<String, String> classChecksums = new HashMap<>();
-    classChecksums.put("string", "60fdea03408aaafd0b4dc6a4817569eb"); //$NON-NLS-1$ //$NON-NLS-2$
-    classChecksums.put("int", "63a78c91b56c7cfce37cc523cfed674f"); //$NON-NLS-1$ //$NON-NLS-2$
-    classChecksums.put("long", "a7fc481e15d180a32cf46d0aa6e4312c"); //$NON-NLS-1$ //$NON-NLS-2$
+    classChecksums.put("string", "0dff63ca2e13e04583b7ebda640e67be"); //$NON-NLS-1$ //$NON-NLS-2$
+    classChecksums.put("int", "4550f57dae31012937f56b53f65460be"); //$NON-NLS-1$ //$NON-NLS-2$
+    classChecksums.put("long", "245f4a97f609a3d145b2b57ecab3fc77"); //$NON-NLS-1$ //$NON-NLS-2$
     final Map<String, String> testChecksums = new HashMap<>();
-    testChecksums.put("string", "53d3d9f9ba53ada70155b2cf9033b20c"); //$NON-NLS-1$ //$NON-NLS-2$
-    testChecksums.put("int", "2d880483d3bd96818ee80d6ebf5e4c7c"); //$NON-NLS-1$ //$NON-NLS-2$
-    testChecksums.put("long", "290403e5fbc0f4efe6ffcce75fc71268"); //$NON-NLS-1$ //$NON-NLS-2$
+    testChecksums.put("string", "45cf45be8d9661a5464148631ea4782d"); //$NON-NLS-1$ //$NON-NLS-2$
+    testChecksums.put("int", "e886f3c2c329da1c950156b40d92dc3d"); //$NON-NLS-1$ //$NON-NLS-2$
+    testChecksums.put("long", "47a227b11a611f75704b068cef759a2a"); //$NON-NLS-1$ //$NON-NLS-2$
 
     final ValidationGenerator generator = new ValidationGenerator("target/generated-sources", "Test2", templateType); //$NON-NLS-1$ //$NON-NLS-2$
     generator.getClasses();
 
     final MessageDigest mdClass = MessageDigest.getInstance("MD5"); //$NON-NLS-1$
-    try (BufferedInputStream in = new BufferedInputStream((new FileInputStream("target/generated-sources/de/powerstat/validation/values/Test2.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), mdClass)) //$NON-NLS-1$
+    try (BufferedInputStream in = new BufferedInputStream((Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/Test2.java")))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), mdClass)) //$NON-NLS-1$
      {
       in.transferTo(out);
      }
     final MessageDigest mdTest = MessageDigest.getInstance("MD5"); //$NON-NLS-1$
-    try (BufferedInputStream in = new BufferedInputStream((new FileInputStream("target/generated-sources/de/powerstat/validation/values/test/Test2Tests.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), mdTest)) //$NON-NLS-1$
+    try (BufferedInputStream in = new BufferedInputStream((Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/test/Test2Tests.java")))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), mdTest)) //$NON-NLS-1$
      {
       in.transferTo(out);
      }

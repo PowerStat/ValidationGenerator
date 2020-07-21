@@ -7,10 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigInteger;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.DigestOutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -48,24 +49,24 @@ public class CodeGeneratorTests
   public void testMain(final String templateType) throws IOException, NoSuchAlgorithmException
    {
     final Map<String, String> classChecksums = new HashMap<>();
-    classChecksums.put("string", "bb74713bb73112dc99b1eefd4a022cc3"); //$NON-NLS-1$ //$NON-NLS-2$
-    classChecksums.put("int", "946ba52207e7653c5cdc13b3d4317f38"); //$NON-NLS-1$ //$NON-NLS-2$
-    classChecksums.put("long", "19a5bebaf309b86ade73ef66e94b3551"); //$NON-NLS-1$ //$NON-NLS-2$
+    classChecksums.put("string", "eb0f3e7d2034ce4fe384b65586387304"); //$NON-NLS-1$ //$NON-NLS-2$
+    classChecksums.put("int", "e0989c2cbab51407b24ab6bb6d604e23"); //$NON-NLS-1$ //$NON-NLS-2$
+    classChecksums.put("long", "418cd20d988c98b30b84d5a84d946278"); //$NON-NLS-1$ //$NON-NLS-2$
     final Map<String, String> testChecksums = new HashMap<>();
-    testChecksums.put("string", "ae7cef1da4232f7545887fa40024b7db"); //$NON-NLS-1$ //$NON-NLS-2$
-    testChecksums.put("int", "18d194637e03397d5361ad9aba597df6"); //$NON-NLS-1$ //$NON-NLS-2$
-    testChecksums.put("long", "930b18b06cfc18206d0431780bacd4d5"); //$NON-NLS-1$ //$NON-NLS-2$
+    testChecksums.put("string", "7ede29136809c0bb5ae80ab1d228b993"); //$NON-NLS-1$ //$NON-NLS-2$
+    testChecksums.put("int", "76988a104e1090ff9d723881a971e761"); //$NON-NLS-1$ //$NON-NLS-2$
+    testChecksums.put("long", "f7daac47f5cd7144a8f8cc41d3add94d"); //$NON-NLS-1$ //$NON-NLS-2$
 
     final String[] args = {"Test3" , templateType}; //$NON-NLS-1$
     CodeGenerator.main(args);
 
     final MessageDigest mdClass = MessageDigest.getInstance("MD5"); //$NON-NLS-1$
-    try (BufferedInputStream in = new BufferedInputStream((new FileInputStream("target/generated-sources/de/powerstat/validation/values/Test3.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), mdClass)) //$NON-NLS-1$
+    try (BufferedInputStream in = new BufferedInputStream((Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/Test3.java")))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), mdClass)) //$NON-NLS-1$
      {
       in.transferTo(out);
      }
     final MessageDigest mdTest = MessageDigest.getInstance("MD5"); //$NON-NLS-1$
-    try (BufferedInputStream in = new BufferedInputStream((new FileInputStream("target/generated-sources/de/powerstat/validation/values/test/Test3Tests.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), mdTest)) //$NON-NLS-1$
+    try (BufferedInputStream in = new BufferedInputStream((Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/test/Test3Tests.java")))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), mdTest)) //$NON-NLS-1$
      {
       in.transferTo(out);
      }
