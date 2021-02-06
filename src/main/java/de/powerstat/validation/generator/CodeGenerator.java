@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 Dipl.-Inform. Kai Hofmann. All rights reserved!
+ * Copyright (C) 2020-2021 Dipl.-Inform. Kai Hofmann. All rights reserved!
  */
 package de.powerstat.validation.generator;
 
@@ -15,6 +15,8 @@ import de.powerstat.validation.generator.impl.ValidationGenerator;
  * Validation code generator.
  *
  * @author Kai Hofmann
+ *
+ * TODO outputClassPath outputTestPath parameter
  */
 public final class CodeGenerator
  {

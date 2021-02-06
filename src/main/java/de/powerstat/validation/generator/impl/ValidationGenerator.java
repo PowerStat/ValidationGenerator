@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 Dipl.-Inform. Kai Hofmann. All rights reserved!
+ * Copyright (C) 2020-2021 Dipl.-Inform. Kai Hofmann. All rights reserved!
  */
 package de.powerstat.validation.generator.impl;
 
@@ -7,10 +7,11 @@ package de.powerstat.validation.generator.impl;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,6 +22,8 @@ import de.powerstat.phplib.templateengine.TemplateEngine.HandleUndefined;
 
 /**
  * Validation base code generator.
+ *
+ * TODO read templates from inside and outside jar
  */
 public final class ValidationGenerator
  {
@@ -42,7 +45,7 @@ public final class ValidationGenerator
   /**
    * Template types.
    */
-  private static final List<String> TEMPLATE_TYPES = new ArrayList<>();
+  private static final Set<String> TEMPLATE_TYPES = new HashSet<>();
 
   /**
    * Output path.
@@ -65,9 +68,9 @@ public final class ValidationGenerator
    */
   static
    {
-    ValidationGenerator.TEMPLATE_TYPES.add("string");
-    ValidationGenerator.TEMPLATE_TYPES.add("long");
-    ValidationGenerator.TEMPLATE_TYPES.add("int");
+    ValidationGenerator.TEMPLATE_TYPES.add("string"); //$NON-NLS-1$
+    ValidationGenerator.TEMPLATE_TYPES.add("long"); //$NON-NLS-1$
+    ValidationGenerator.TEMPLATE_TYPES.add("int"); //$NON-NLS-1$
    }
 
 
@@ -87,8 +90,8 @@ public final class ValidationGenerator
      {
       throw new IllegalArgumentException("Unknown template type");
      }
-    this.outputPath = outputPath;
-    this.className = className;
+    this.outputPath = outputPath; // TODO verify
+    this.className = className; // TODO verify
     this.templateType = templateType;
    }
 
@@ -101,29 +104,46 @@ public final class ValidationGenerator
   public void getClasses() throws IOException
    {
     final TemplateEngine templClass = new TemplateEngine(HandleUndefined.KEEP);
-    templClass.setFile(CLASS, new File("src/main/resources/" + this.templateType + "Class.tmpl")); //$NON-NLS-1$ //$NON-NLS-2$
+    templClass.setFile(CLASS, new File("src/main/resources", this.templateType + "Class.tmpl")); //$NON-NLS-1$ //$NON-NLS-2$
     templClass.setVar("CLASSNAME", this.className); //$NON-NLS-1$
-    templClass.setVar("FIELDNAME", this.className.substring(0, 1).toLowerCase(Locale.getDefault()) + this.className.substring(1)); //$NON-NLS-1$
+    final String fieldname = this.className.substring(0, 1).toLowerCase(Locale.getDefault()) + this.className.substring(1);
+    templClass.setVar("FIELDNAME", fieldname); //$NON-NLS-1$
     templClass.parse(CLASS, CLASS);
 
     final TemplateEngine templTests = new TemplateEngine(HandleUndefined.KEEP);
-    templTests.setFile(TESTS, new File("src/main/resources/" + this.templateType + "Tests.tmpl")); //$NON-NLS-1$ //$NON-NLS-2$
+    templTests.setFile(TESTS, new File("src/main/resources", this.templateType + "Tests.tmpl")); //$NON-NLS-1$ //$NON-NLS-2$
     templTests.setVar("CLASSNAME", this.className); //$NON-NLS-1$
-    templTests.setVar("FIELDNAME", this.className.substring(0, 1).toLowerCase(Locale.getDefault()) + this.className.substring(1)); //$NON-NLS-1$
+    templTests.setVar("FIELDNAME", fieldname); //$NON-NLS-1$
     templTests.parse(TESTS, TESTS);
 
-    final File dirClass = new File(this.outputPath + "/de/powerstat/validation/values"); //$NON-NLS-1$
-    dirClass.mkdirs();
-    try (PrintWriter out = new PrintWriter(dirClass.getAbsolutePath() + File.separator + this.className + ".java")) //$NON-NLS-1$
+    final File dirClass = new File(this.outputPath, "de/powerstat/validation/values"); //$NON-NLS-1$
+    boolean result = dirClass.exists() || dirClass.mkdirs();
+    if (result)
      {
-      out.print(templClass.get(CLASS));
+      try (PrintWriter out = new PrintWriter(dirClass.getAbsolutePath() + File.separator + this.className + ".java", StandardCharsets.UTF_8.name())) //$NON-NLS-1$
+       {
+        out.print(templClass.get(CLASS));
+        out.flush();
+       }
+     }
+    else
+     {
+      LOGGER.error("Could not create directory: " + this.outputPath + "/de/powerstat/validation/values"); //$NON-NLS-1$ //$NON-NLS-2$
      }
 
-    final File dirTests = new File(this.outputPath + "/de/powerstat/validation/values/test"); //$NON-NLS-1$
-    dirTests.mkdirs();
-    try (PrintWriter out = new PrintWriter(dirTests.getAbsolutePath() + File.separator + this.className + "Tests.java")) //$NON-NLS-1$
+    final File dirTests = new File(this.outputPath, "de/powerstat/validation/values/test"); //$NON-NLS-1$
+    result = dirTests.exists() || dirTests.mkdirs();
+    if (result)
      {
-      out.print(templTests.get(TESTS));
+      try (PrintWriter out = new PrintWriter(dirTests.getAbsolutePath() + File.separator + this.className + "Tests.java", StandardCharsets.UTF_8.name())) //$NON-NLS-1$
+       {
+        out.print(templTests.get(TESTS));
+        out.flush();
+       }
+     }
+    else
+     {
+      LOGGER.error("Could not create directory: " + this.outputPath + "/de/powerstat/validation/values/test"); //$NON-NLS-1$ //$NON-NLS-2$
      }
 
    }

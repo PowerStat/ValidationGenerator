@@ -18,21 +18,49 @@ import java.nio.file.Paths;
 import java.security.DigestOutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import de.powerstat.validation.generator.impl.ValidationGenerator;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 
 /**
  * Validation code generator tests.
  */
+@SuppressFBWarnings({"WEAK_MESSAGE_DIGEST_MD5", "SEC_SIDE_EFFECT_CONSTRUCTOR"})
 public class ValidationGeneratorTests
  {
+  /**
+   * Int constant.
+   */
+  private static final String INT = "int"; //$NON-NLS-1$
+
+  /**
+   * Long constant.
+   */
+  private static final String LONG = "long"; //$NON-NLS-1$
+
+  /**
+   * String constant.
+   */
+  private static final String STRING = "string"; //$NON-NLS-1$
+
+  /**
+   * Test 1.
+   */
+  private static final String TEST1 = "Test1"; //$NON-NLS-1$
+
+  /**
+   * Generated sources directory.
+   */
+  private static final String GENERATED_SOURCES_DIR = "target/generated-sources";
+
+
   /**
    * Default constructor.
    */
@@ -48,10 +76,10 @@ public class ValidationGeneratorTests
    * @param templateType Template type: string, int, long
    */
   @ParameterizedTest
-  @ValueSource(strings = {"string", "int", "long"})
+  @ValueSource(strings = {STRING, INT, LONG})
   public void constructorTypes(final String templateType)
    {
-    final ValidationGenerator generator = new ValidationGenerator("target/generated-sources", "Test1", templateType); //$NON-NLS-1$ //$NON-NLS-2$
+    final ValidationGenerator generator = new ValidationGenerator(GENERATED_SOURCES_DIR, TEST1, templateType);
     assertNotNull(generator, "Generaor creation failed"); //$NON-NLS-1$
    }
 
@@ -64,7 +92,7 @@ public class ValidationGeneratorTests
    {
     assertThrows(NullPointerException.class, () ->
      {
-      /* final ValidationGenerator generator = */ new ValidationGenerator(null, "Test1", "string"); //$NON-NLS-1$ //$NON-NLS-2$
+      /* final ValidationGenerator generator = */ new ValidationGenerator(null, TEST1, STRING);
      }
     );
    }
@@ -78,7 +106,7 @@ public class ValidationGeneratorTests
    {
     assertThrows(NullPointerException.class, () ->
      {
-      /* final ValidationGenerator generator = */ new ValidationGenerator("target/generated-sources", null, "string"); //$NON-NLS-1$ //$NON-NLS-2$
+      /* final ValidationGenerator generator = */ new ValidationGenerator(GENERATED_SOURCES_DIR, null, STRING);
      }
     );
    }
@@ -92,7 +120,7 @@ public class ValidationGeneratorTests
    {
     assertThrows(NullPointerException.class, () ->
      {
-      /* final ValidationGenerator generator = */ new ValidationGenerator("target/generated-sources", "Test1", null); //$NON-NLS-1$ //$NON-NLS-2$
+      /* final ValidationGenerator generator = */ new ValidationGenerator(GENERATED_SOURCES_DIR, TEST1, null);
      }
     );
    }
@@ -106,7 +134,7 @@ public class ValidationGeneratorTests
    {
     assertThrows(IllegalArgumentException.class, () ->
      {
-      /* final ValidationGenerator generator = */ new ValidationGenerator("target/generated-sources", "Test1", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+      /* final ValidationGenerator generator = */ new ValidationGenerator(GENERATED_SOURCES_DIR, TEST1, ""); //$NON-NLS-1$
      }
     );
    }
@@ -120,34 +148,33 @@ public class ValidationGeneratorTests
    * @throws NoSuchAlgorithmException no such algorithm exception
    */
   @ParameterizedTest
-  @ValueSource(strings = {"string", "int", "long"})
+  @ValueSource(strings = {STRING, INT, LONG})
   public void getclasses(final String templateType) throws IOException, NoSuchAlgorithmException
    {
-    final Map<String, String> classChecksums = new HashMap<>();
-    classChecksums.put("string", "0dff63ca2e13e04583b7ebda640e67be"); //$NON-NLS-1$ //$NON-NLS-2$
-    classChecksums.put("int", "4550f57dae31012937f56b53f65460be"); //$NON-NLS-1$ //$NON-NLS-2$
-    classChecksums.put("long", "245f4a97f609a3d145b2b57ecab3fc77"); //$NON-NLS-1$ //$NON-NLS-2$
-    final Map<String, String> testChecksums = new HashMap<>();
-    testChecksums.put("string", "45cf45be8d9661a5464148631ea4782d"); //$NON-NLS-1$ //$NON-NLS-2$
-    testChecksums.put("int", "e886f3c2c329da1c950156b40d92dc3d"); //$NON-NLS-1$ //$NON-NLS-2$
-    testChecksums.put("long", "47a227b11a611f75704b068cef759a2a"); //$NON-NLS-1$ //$NON-NLS-2$
+    final Map<String, String> classChecksums = new ConcurrentHashMap<>();
+    classChecksums.put(STRING, "0e4dc3a82e1204258e1d0799a5553066"); //$NON-NLS-1$
+    classChecksums.put(INT, "b64d1b66b8fbdf68794b10488e3affb8"); //$NON-NLS-1$
+    classChecksums.put(LONG, "0de115b13234c6029799c4ffa92182e5"); //$NON-NLS-1$
+    final Map<String, String> testChecksums = new ConcurrentHashMap<>();
+    testChecksums.put(STRING, "d41d8cd98f00b204e9800998ecf8427e"); //$NON-NLS-1$
+    testChecksums.put(INT, "d41d8cd98f00b204e9800998ecf8427e"); //$NON-NLS-1$
+    testChecksums.put(LONG, "d41d8cd98f00b204e9800998ecf8427e"); //$NON-NLS-1$
 
-    final ValidationGenerator generator = new ValidationGenerator("target/generated-sources", "Test2", templateType); //$NON-NLS-1$ //$NON-NLS-2$
+    final ValidationGenerator generator = new ValidationGenerator(GENERATED_SOURCES_DIR, "Test2", templateType); //$NON-NLS-1$
     generator.getClasses();
 
-    final MessageDigest mdClass = MessageDigest.getInstance("MD5"); //$NON-NLS-1$
-    try (BufferedInputStream in = new BufferedInputStream((Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/Test2.java")))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), mdClass)) //$NON-NLS-1$
+    final MessageDigest msgdigit = MessageDigest.getInstance("MD5"); //$NON-NLS-1$
+    try (BufferedInputStream inStream = new BufferedInputStream((Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/Test2.java")))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
      {
-      in.transferTo(out);
+      inStream.transferTo(out);
      }
-    final MessageDigest mdTest = MessageDigest.getInstance("MD5"); //$NON-NLS-1$
-    try (BufferedInputStream in = new BufferedInputStream((Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/test/Test2Tests.java")))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), mdTest)) //$NON-NLS-1$
+    try (BufferedInputStream inStream = new BufferedInputStream((Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/test/Test2Tests.java")))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
      {
-      in.transferTo(out);
+      inStream.transferTo(out);
      }
     assertAll("testHashCode", //$NON-NLS-1$
-      () -> assertEquals(classChecksums.get(templateType), String.format("%0" + (mdClass.getDigestLength() * 2) + "x", new BigInteger(1, mdClass.digest())), "class hashCodes are not equal"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-      () -> assertEquals(testChecksums.get(templateType), String.format("%0" + (mdTest.getDigestLength() * 2) + "x", new BigInteger(1, mdTest.digest())), "test hashCodes are not equal") //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+      () -> assertEquals(classChecksums.get(templateType), String.format("%0" + (msgdigit.getDigestLength() * 2) + "x", new BigInteger(1, msgdigit.digest())), "class hashCodes are not equal " + templateType), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+      () -> assertEquals(testChecksums.get(templateType), String.format("%0" + (msgdigit.getDigestLength() * 2) + "x", new BigInteger(1, msgdigit.digest())), "test hashCodes are not equal " + templateType) //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     );
    }
 
