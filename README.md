@@ -58,13 +58,17 @@ To run JDeprScan:
 
     mvn jdeprscan:jdeprscan jdeprscan:test-jdeprscan
     
+To run toolchain:
+
+    mvn toolchains:toolchain
+    
+If you use a sonar server:
+
+    mvn sonar:sonar -Dsonar.login=<username> -Dsonar.password=<password>
+
 If you use [infer][https://fbinfer.com/]:
 
     infer run -- mvn clean compile
-    
-Run toolchain:
-
-    mvn toolchains:toolchain
 
 ## Usage
 
