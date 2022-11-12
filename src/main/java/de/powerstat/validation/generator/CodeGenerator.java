@@ -33,13 +33,20 @@ public final class CodeGenerator
    * Main.
    *
    * @param args 0: Classname; 1: template type string/int/long
-   * @throws IOException IO exception
    */
-  public static void main(final String[] args) throws IOException
+  @SuppressWarnings({"PMD.SystemPrintln", "java:S106"})
+  public static void main(final String[] args)
    {
     Objects.requireNonNull(args[0], "arg0"); //$NON-NLS-1$
     Objects.requireNonNull(args[1], "arg1"); //$NON-NLS-1$
-    new ValidationGenerator("target/generated-sources", args[0], args[1]).getClasses(); //$NON-NLS-1$
+    try
+     {
+      new ValidationGenerator("target/generated-sources", args[0], args[1]).getClasses(); //$NON-NLS-1$
+     }
+    catch (final IllegalArgumentException | IOException e)
+     {
+      System.err.println(e.getLocalizedMessage());
+     }
    }
 
  }
