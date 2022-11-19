@@ -415,14 +415,30 @@
               <goal>process-asciidoc</goal>
             </goals>
             <configuration>
+              <sourceDirectory>src/site/asciidoc</sourceDirectory>
+              <!-- <sourceDocumentName>index.adoc</sourceDocumentName> -->
               <backend>xhtml5</backend>
               <sourceHighlighter>coderay</sourceHighlighter>
               <attributes>
                 <toc>left</toc>
               </attributes>
+              <requires>
+                <require>asciidoctor-diagram</require>
+              </requires>
             </configuration>
           </execution>
-
+<!--
+          <execution>
+            <id>output-pdf</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>process-asciidoc</goal>
+            </goals>
+            <configuration>
+              <backend>pdf</backend>
+            </configuration>
+          </execution>
+-->
         </executions>
 
         <dependencies>
@@ -431,6 +447,13 @@
             <artifactId>asciidoctorj-pdf</artifactId>
             <version>2.3.3</version>
           </dependency>
+          
+          <dependency>
+            <groupId>org.asciidoctor</groupId>
+            <artifactId>asciidoctorj-diagram</artifactId>
+            <version>2.2.3</version>
+          </dependency>
+
         </dependencies>
 
       </plugin>

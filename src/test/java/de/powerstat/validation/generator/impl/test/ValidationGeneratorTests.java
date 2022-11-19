@@ -90,22 +90,22 @@ public class ValidationGeneratorTests
   /**
    * Checksum string.
    */
-  private static final String D41D8CD98F00B204E9800998ECF8427E = "d41d8cd98f00b204e9800998ecf8427e"; //$NON-NLS-1$
+  private static final String CHECKSUM1 = "d41d8cd98f00b204e9800998ecf8427e"; //$NON-NLS-1$
 
   /**
    * Checksum string.
    */
-  private static final String E4DC3A82E1204258E1D0799A5553066 = "0e4dc3a82e1204258e1d0799a5553066"; //$NON-NLS-1$
+  private static final String CHECKSUM2 = "2e321d19e45479d79e7c1f790ddecc2a"; //$NON-NLS-1$
 
   /**
    * Checksum string.
    */
-  private static final String DE115B13234C6029799C4FFA92182E5 = "0de115b13234c6029799c4ffa92182e5"; //$NON-NLS-1$
+  private static final String CHECKSUM3 = "7b1d9e8ba46769c1015f4ad8e3e7924d"; //$NON-NLS-1$
 
   /**
    * Checksum string.
    */
-  private static final String B64D1B66B8FBDF68794B10488E3AFFB8 = "b64d1b66b8fbdf68794b10488e3affb8"; //$NON-NLS-1$
+  private static final String CHECKSUM4 = "c607eb0d65d91cd2b3d26775f901a257"; //$NON-NLS-1$
 
   /**
    * Zero constant.
@@ -262,13 +262,13 @@ public class ValidationGeneratorTests
   public void getclasses(final String templateType) throws IOException, NoSuchAlgorithmException
    {
     final Map<String, String> classChecksums = new ConcurrentHashMap<>();
-    classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.E4DC3A82E1204258E1D0799A5553066);
-    classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.B64D1B66B8FBDF68794B10488E3AFFB8);
-    classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.DE115B13234C6029799C4FFA92182E5);
+    classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM2);
+    classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM4);
+    classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM3);
     final Map<String, String> testChecksums = new ConcurrentHashMap<>();
-    testChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.D41D8CD98F00B204E9800998ECF8427E);
-    testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.D41D8CD98F00B204E9800998ECF8427E);
-    testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.D41D8CD98F00B204E9800998ECF8427E);
+    testChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM1);
+    testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM1);
+    testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM1);
 
     final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.GENERATED_SOURCES_DIR, ValidationGeneratorTests.TEST2, templateType);
     generator.getClasses();
@@ -299,13 +299,13 @@ public class ValidationGeneratorTests
   public void getclassesPathTrue() throws IOException, NoSuchAlgorithmException
    {
     final Map<String, String> classChecksums = new ConcurrentHashMap<>();
-    classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.E4DC3A82E1204258E1D0799A5553066);
-    classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.B64D1B66B8FBDF68794B10488E3AFFB8);
-    classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.DE115B13234C6029799C4FFA92182E5);
+    classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM2);
+    classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM4);
+    classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM3);
     final Map<String, String> testChecksums = new ConcurrentHashMap<>();
-    testChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.D41D8CD98F00B204E9800998ECF8427E);
-    testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.DE115B13234C6029799C4FFA92182E5);
-    testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.DE115B13234C6029799C4FFA92182E5);
+    testChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM1);
+    testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM3);
+    testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM3);
 
     /* final boolean success = */ new File(ValidationGeneratorTests.TARGET_TEST1).mkdir();
     final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.TARGET_TEST1, ValidationGeneratorTests.TEST2, ValidationGeneratorTests.STRING);
@@ -339,13 +339,13 @@ public class ValidationGeneratorTests
     assertThrows(FileSystemException.class, () ->
      {
       final Map<String, String> classChecksums = new ConcurrentHashMap<>();
-      classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.E4DC3A82E1204258E1D0799A5553066);
-      classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.B64D1B66B8FBDF68794B10488E3AFFB8);
-      classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.DE115B13234C6029799C4FFA92182E5);
+      classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM2);
+      classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM4);
+      classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM3);
       final Map<String, String> testChecksums = new ConcurrentHashMap<>();
-      testChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.D41D8CD98F00B204E9800998ECF8427E);
-      testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.DE115B13234C6029799C4FFA92182E5);
-      testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.DE115B13234C6029799C4FFA92182E5);
+      testChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM1);
+      testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM3);
+      testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM3);
 
       /* final boolean success = */ new File(ValidationGeneratorTests.TARGET_TEST2).mkdir();
       final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.TARGET_TEST2, ValidationGeneratorTests.TEST2, ValidationGeneratorTests.STRING);
@@ -369,13 +369,13 @@ public class ValidationGeneratorTests
     assertThrows(FileSystemException.class, () ->
      {
       final Map<String, String> classChecksums = new ConcurrentHashMap<>();
-      classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.E4DC3A82E1204258E1D0799A5553066);
-      classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.B64D1B66B8FBDF68794B10488E3AFFB8);
-      classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.DE115B13234C6029799C4FFA92182E5);
+      classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM2);
+      classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM4);
+      classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM3);
       final Map<String, String> testChecksums = new ConcurrentHashMap<>();
-      testChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.D41D8CD98F00B204E9800998ECF8427E);
-      testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.DE115B13234C6029799C4FFA92182E5);
-      testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.DE115B13234C6029799C4FFA92182E5);
+      testChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM1);
+      testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM3);
+      testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM3);
 
       /* final boolean success = */ new File(ValidationGeneratorTests.TARGET_TEST3).mkdir();
       final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.TARGET_TEST3, ValidationGeneratorTests.TEST2, ValidationGeneratorTests.STRING);

@@ -58,7 +58,7 @@ public class {CLASSNAME}Tests
     assertThrows(IllegalArgumentException.class, () ->
      {
       /* final {CLASSNAME} clean{CLASSNAME} = */ {CLASSNAME}.of({FIELDNAME});
-     }
+     }, "Illegal argument exception expected"
     );
    }
 
@@ -75,7 +75,7 @@ public class {CLASSNAME}Tests
     assertThrows(IllegalArgumentException.class, () ->
      {
       /* final {CLASSNAME} clean{CLASSNAME} = */ {CLASSNAME}.of({FIELDNAME});
-     }
+     }, "Illegal argument exception"
     );
    }
 
