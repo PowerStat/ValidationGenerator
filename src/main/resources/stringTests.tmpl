@@ -42,7 +42,7 @@ public class {CLASSNAME}Tests
   public void {FIELDNAME}Correct(final String {FIELDNAME})
    {
     final {CLASSNAME} clean{CLASSNAME} = {CLASSNAME}.of({FIELDNAME});
-    assertEquals({FIELDNAME}, clean{CLASSNAME}.get{CLASSNAME}(), "{CLASSNAME} not as expected"); //$NON-NLS-1$
+    assertEquals({FIELDNAME}, clean{CLASSNAME}.stringValue(), "{CLASSNAME} not as expected"); //$NON-NLS-1$
    }
 
 
@@ -81,13 +81,13 @@ public class {CLASSNAME}Tests
 
 
   /**
-   * Test get {FIELDNAME}.
+   * Test stringValue.
    */
   @Test
-  public void get{CLASSNAME}()
+  public void stringValue()
    {
     final {CLASSNAME} {FIELDNAME} = {CLASSNAME}.of("Example1"); //$NON-NLS-1$
-    assertEquals("Example1", {FIELDNAME}.get{CLASSNAME}(), "{CLASSNAME} not as expected"); //$NON-NLS-1$ //$NON-NLS-2$
+    assertEquals("Example1", {FIELDNAME}.stringValue(), "{CLASSNAME} not as expected"); //$NON-NLS-1$ //$NON-NLS-2$
    }
 
 

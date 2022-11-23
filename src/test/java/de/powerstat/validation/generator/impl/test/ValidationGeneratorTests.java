@@ -95,17 +95,17 @@ public class ValidationGeneratorTests
   /**
    * Checksum string.
    */
-  private static final String CHECKSUM2 = "2e321d19e45479d79e7c1f790ddecc2a"; //$NON-NLS-1$
+  private static final String CHECKSUM2 = "8531b71ee92ff21d00a235342c401587"; //$NON-NLS-1$
 
   /**
    * Checksum string.
    */
-  private static final String CHECKSUM3 = "7b1d9e8ba46769c1015f4ad8e3e7924d"; //$NON-NLS-1$
+  private static final String CHECKSUM3 = "fa6501c54181928855f486e19ae970d0"; //$NON-NLS-1$
 
   /**
    * Checksum string.
    */
-  private static final String CHECKSUM4 = "c607eb0d65d91cd2b3d26775f901a257"; //$NON-NLS-1$
+  private static final String CHECKSUM4 = "395cd9b0499b36f2bbc294e9af6a28df"; //$NON-NLS-1$
 
   /**
    * Zero constant.

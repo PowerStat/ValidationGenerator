@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 Dipl.-Inform. Kai Hofmann. All rights reserved!
+ * Copyright (C) 2020-2022 Dipl.-Inform. Kai Hofmann. All rights reserved!
  */
 package de.powerstat.validation.values.test;
 
@@ -41,7 +41,7 @@ public class {CLASSNAME}Tests
   @ValueSource(ints = {-1, 1, 2020})
   public void is{CLASSNAME}(final int {FIELDNAME})
    {
-    assertEquals({FIELDNAME}, {CLASSNAME}.of({FIELDNAME}).get{CLASSNAME}(), "Not a {FIELDNAME}!"); //$NON-NLS-1$
+    assertEquals({FIELDNAME}, {CLASSNAME}.of({FIELDNAME}).intValue(), "Not a {FIELDNAME}!"); //$NON-NLS-1$
    }
 
 
