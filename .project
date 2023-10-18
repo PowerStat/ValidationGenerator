@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>ValidationGenerator</name>
+	<name>validationGenerator</name>
 	<comment>PowerStat&apos;s validation generator.</comment>
 	<projects>
 	</projects>

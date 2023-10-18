@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 Dipl.-Inform. Kai Hofmann. All rights reserved!
+ * Copyright (C) 2020-2023 Dipl.-Inform. Kai Hofmann. All rights reserved!
  */
 package de.powerstat.validation.values.test;
 
@@ -21,6 +21,7 @@ import de.powerstat.validation.values.{CLASSNAME};
 /**
  * {CLASSNAME} tests.
  */
+@SuppressFBWarnings({"EC_NULL_ARG", "RV_NEGATING_RESULT_OF_COMPARETO", "RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT", "SPP_USE_ZERO_WITH_COMPARATOR", "PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS"})
 public class {CLASSNAME}Tests
  {
   /**
@@ -39,7 +40,7 @@ public class {CLASSNAME}Tests
    */
   @ParameterizedTest
   @ValueSource(strings = {"A", "Abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefg"})
-  public void {FIELDNAME}Correct(final String {FIELDNAME})
+  /* default */ void test{FIELDNAME}Correct(final String {FIELDNAME})
    {
     final {CLASSNAME} clean{CLASSNAME} = {CLASSNAME}.of({FIELDNAME});
     assertEquals({FIELDNAME}, clean{CLASSNAME}.stringValue(), "{CLASSNAME} not as expected"); //$NON-NLS-1$
@@ -53,7 +54,7 @@ public class {CLASSNAME}Tests
    */
   @ParameterizedTest
   @ValueSource(strings = {"", "Abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefgh"})
-  public void {FIELDNAME}Length(final String {FIELDNAME})
+  /* default */ void test{FIELDNAME}Length(final String {FIELDNAME})
    {
     assertThrows(IllegalArgumentException.class, () ->
      {
@@ -70,7 +71,7 @@ public class {CLASSNAME}Tests
    */
   @ParameterizedTest
   @ValueSource(strings = {"abc_def"})
-  public void {FIELDNAME}Wrong(final String {FIELDNAME})
+  /* default */ void test{FIELDNAME}Wrong(final String {FIELDNAME})
    {
     assertThrows(IllegalArgumentException.class, () ->
      {
@@ -84,7 +85,7 @@ public class {CLASSNAME}Tests
    * Test stringValue.
    */
   @Test
-  public void stringValue()
+  /* default */ void testSringValue()
    {
     final {CLASSNAME} {FIELDNAME} = {CLASSNAME}.of("Example1"); //$NON-NLS-1$
     assertEquals("Example1", {FIELDNAME}.stringValue(), "{CLASSNAME} not as expected"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -95,7 +96,7 @@ public class {CLASSNAME}Tests
    * Test hash code.
    */
   @Test
-  public void testHashCode()
+  /* default */ void testHashCode()
    {
     final {CLASSNAME} {FIELDNAME}1 = {CLASSNAME}.of("Example1"); //$NON-NLS-1$
     final {CLASSNAME} {FIELDNAME}2 = {CLASSNAME}.of("Example1"); //$NON-NLS-1$
@@ -111,7 +112,8 @@ public class {CLASSNAME}Tests
    * Test equals.
    */
   @Test
-  public void testEquals()
+  @SuppressWarnings("java:S5785")
+  /* default */ void testEquals()
    {
     final {CLASSNAME} {FIELDNAME}1 = {CLASSNAME}.of("Example1"); //$NON-NLS-1$
     final {CLASSNAME} {FIELDNAME}2 = {CLASSNAME}.of("Example1"); //$NON-NLS-1$
@@ -134,7 +136,7 @@ public class {CLASSNAME}Tests
    * Test toString.
    */
   @Test
-  public void testToString()
+  /* default */ void testToString()
    {
     final {CLASSNAME} {FIELDNAME} = {CLASSNAME}.of("Example1");
     assertEquals("{CLASSNAME}[{FIELDNAME}=Example1]", {FIELDNAME}.toString(), "toString not equal"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -145,7 +147,8 @@ public class {CLASSNAME}Tests
    * Test compareTo.
    */
   @Test
-  public void testCompareTo()
+  @SuppressWarnings("java:S5785")
+  /* default */ void testCompareTo()
    {
     final {CLASSNAME} {FIELDNAME}1 = {CLASSNAME}.of("Example1"); //$NON-NLS-1$
     final {CLASSNAME} {FIELDNAME}2 = {CLASSNAME}.of("Example1"); //$NON-NLS-1$

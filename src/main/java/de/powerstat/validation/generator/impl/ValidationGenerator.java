@@ -18,8 +18,8 @@ import java.util.regex.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import de.powerstat.phplib.templateengine.HandleUndefined;
 import de.powerstat.phplib.templateengine.TemplateEngine;
-import de.powerstat.phplib.templateengine.TemplateEngine.HandleUndefined;
 
 
 /**
@@ -68,7 +68,7 @@ public final class ValidationGenerator
   /**
    * Classname regexp.
    */
-  private static final Pattern CLASSNAME_REGEXP = Pattern.compile("^[A-Z][a-zA-Z0-9_]*$"); //$NON-NLS-1$
+  private static final Pattern CLASSNAME_REGEXP = Pattern.compile("^[A-Z]\\w*$"); //$NON-NLS-1$
 
   /**
    * Classname constant.
@@ -159,37 +159,37 @@ public final class ValidationGenerator
   @SuppressWarnings("PMD.LinguisticNaming")
   public void getClasses() throws IOException
    {
-    final TemplateEngine templClass = new TemplateEngine(HandleUndefined.KEEP);
+    final var templClass = new TemplateEngine(HandleUndefined.KEEP);
     templClass.setFile(ValidationGenerator.CLASS, new File(ValidationGenerator.RESOURCES_PATH, this.templateType + "Class.tmpl")); //$NON-NLS-1$
     templClass.setVar(ValidationGenerator.CLASSNAME, this.className);
     templClass.setVar(ValidationGenerator.FIELDNAME2, this.fieldName);
     templClass.parse(ValidationGenerator.CLASS, ValidationGenerator.CLASS);
 
-    final TemplateEngine templTests = new TemplateEngine(HandleUndefined.KEEP);
+    final var templTests = new TemplateEngine(HandleUndefined.KEEP);
     templTests.setFile(ValidationGenerator.TESTS, new File(ValidationGenerator.RESOURCES_PATH, this.templateType + "Tests.tmpl")); //$NON-NLS-1$
     templTests.setVar(ValidationGenerator.CLASSNAME, this.className);
     templTests.setVar(ValidationGenerator.FIELDNAME2, this.fieldName);
     templTests.parse(ValidationGenerator.TESTS, ValidationGenerator.TESTS);
 
-    final File dirClass = new File(this.outputPath, ValidationGenerator.PACKAGE_PATH);
+    final var dirClass = new File(this.outputPath, ValidationGenerator.PACKAGE_PATH);
     if (!dirClass.isDirectory() && !dirClass.mkdirs())
      {
       ValidationGenerator.LOGGER.error("Could not create directory: {}/{}", this.outputPath, ValidationGenerator.PACKAGE_PATH); //$NON-NLS-1$
       throw new FileSystemException(ValidationGenerator.COULD_NOT_CREATE_DIRECTORY + dirClass.getCanonicalPath());
      }
-    try (PrintWriter out = new PrintWriter(dirClass.getAbsolutePath() + File.separator + this.className + ".java", StandardCharsets.UTF_8.name())) //$NON-NLS-1$
+    try (var out = new PrintWriter(dirClass.getAbsolutePath() + File.separator + this.className + ".java", StandardCharsets.UTF_8.name())) //$NON-NLS-1$
      {
       out.print(templClass.get(ValidationGenerator.CLASS));
       out.flush();
      }
 
-    final File dirTests = new File(this.outputPath, ValidationGenerator.PACKAGE_PATH + ValidationGenerator.TEST_PATH);
+    final var dirTests = new File(this.outputPath, ValidationGenerator.PACKAGE_PATH + ValidationGenerator.TEST_PATH);
     if (!dirTests.isDirectory() && !dirTests.mkdirs())
      {
       ValidationGenerator.LOGGER.error("Could not create directory: {}/{}/test", this.outputPath, ValidationGenerator.PACKAGE_PATH + ValidationGenerator.TEST_PATH); //$NON-NLS-1$
       throw new FileSystemException(ValidationGenerator.COULD_NOT_CREATE_DIRECTORY + dirTests.getCanonicalPath());
      }
-    try (PrintWriter out = new PrintWriter(dirTests.getAbsolutePath() + File.separator + this.className + "Tests.java", StandardCharsets.UTF_8.name())) //$NON-NLS-1$
+    try (var out = new PrintWriter(dirTests.getAbsolutePath() + File.separator + this.className + "Tests.java", StandardCharsets.UTF_8.name())) //$NON-NLS-1$
      {
       out.print(templTests.get(ValidationGenerator.TESTS));
       out.flush();

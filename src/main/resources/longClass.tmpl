@@ -10,10 +10,16 @@ import java.util.Objects;
 /**
  * {CLASSNAME}.
  *
- * Not DSGVO relevant.
+ * Maybe DSGVO relevant.
  */
-public final class {CLASSNAME} implements Comparable<{CLASSNAME}>
+@SuppressWarnings("PMD.UseConcurrentHashMap")
+public final class {CLASSNAME} implements Comparable<{CLASSNAME}>, IValueObject
  {
+  /**
+   * Cache for singletons.
+   */
+  private static final Map<Long, {CLASSNAME}> CACHE = new WeakHashMap<>();
+
   /**
    * {CLASSNAME}.
    */
@@ -45,7 +51,29 @@ public final class {CLASSNAME} implements Comparable<{CLASSNAME}>
    */
   public static {CLASSNAME} of(final long {FIELDNAME})
    {
-    return new {CLASSNAME}({FIELDNAME});
+    synchronized ({CLASSNAME}.class)
+     {
+      {CLASSNAME} obj = {CLASSNAME}.CACHE.get({FIELDNAME});
+      if (obj != null)
+       {
+        return obj;
+       }
+      obj = new {CLASSNAME}({FIELDNAME});
+      {CLASSNAME}.CACHE.put(Long.valueOf({FIELDNAME}), obj);
+      return obj;
+     }
+   }
+
+
+  /**
+   * {CLASSNAME} factory.
+   *
+   * @param value String value
+   * @return {CLASSNAME} object
+   */
+  public static {CLASSNAME} of(final String value)
+   {
+    return of(Long.parseInt(value));
    }
 
 
@@ -57,6 +85,18 @@ public final class {CLASSNAME} implements Comparable<{CLASSNAME}>
   public long longValue()
    {
     return this.{FIELDNAME};
+   }
+
+
+  /**
+   * Returns the value of this {CLASSNAME} as an String.
+   *
+   * @return The numeric value represented by this object after conversion to type String.
+   */
+  @Override
+  public String stringValue()
+   {
+    return String.valueOf(this.{FIELDNAME});
    }
 
 
@@ -83,6 +123,8 @@ public final class {CLASSNAME} implements Comparable<{CLASSNAME}>
   @Override
   public boolean equals(final Object obj)
    {
+    return this == obj;
+    /*
     if (this == obj)
      {
       return true;
@@ -93,6 +135,7 @@ public final class {CLASSNAME} implements Comparable<{CLASSNAME}>
      }
     final {CLASSNAME} other = ({CLASSNAME})obj;
     return this.{FIELDNAME} == other.{FIELDNAME};
+    */
    }
 
 
@@ -109,7 +152,7 @@ public final class {CLASSNAME} implements Comparable<{CLASSNAME}>
   @Override
   public String toString()
    {
-    final StringBuilder builder = new StringBuilder();
+    final var builder = new StringBuilder();
     builder.append("{CLASSNAME}[{FIELDNAME}=").append(this.{FIELDNAME}).append(']'); //$NON-NLS-1$
     return builder.toString();
    }

@@ -12,7 +12,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.DigestOutputStream;
@@ -35,7 +37,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  * Code generator tests.
  */
 @SuppressFBWarnings("WEAK_MESSAGE_DIGEST_MD5")
-public class CodeGeneratorTests
+final class CodeGeneratorTests
  {
   /**
    * String constant.
@@ -91,7 +93,7 @@ public class CodeGeneratorTests
   /**
    * Default constructor.
    */
-  public CodeGeneratorTests()
+  /* default */ CodeGeneratorTests()
    {
     super();
    }
@@ -99,12 +101,14 @@ public class CodeGeneratorTests
 
   /**
    * Setup stream.
+   *
+   * @throws UnsupportedEncodingException Unsupported encoding exception
    */
   @BeforeEach
-  public void setUpStreams()
+  /* default */ void setUpStreams() throws UnsupportedEncodingException
    {
-    System.setOut(new PrintStream(this.outContent));
-    System.setErr(new PrintStream(this.errContent));
+     System.setOut(new PrintStream(this.outContent, true, Charset.defaultCharset().name()));
+     System.setErr(new PrintStream(this.errContent, true, Charset.defaultCharset().name()));
    }
 
 
@@ -112,7 +116,7 @@ public class CodeGeneratorTests
    * Restore streams.
    */
   @AfterEach
-  public void restoreStreams()
+  /* default */ void restoreStreams()
    {
     System.setOut(this.originalOut);
     System.setErr(this.originalErr);
@@ -129,12 +133,12 @@ public class CodeGeneratorTests
    */
   @ParameterizedTest
   @ValueSource(strings = {CodeGeneratorTests.STRING, CodeGeneratorTests.INT, CodeGeneratorTests.LONG})
-  public void testMain(final String templateType) throws IOException, NoSuchAlgorithmException, InterruptedException
+  /* default */ void testMain(final String templateType) throws IOException, NoSuchAlgorithmException, InterruptedException
    {
     final Map<String, String> classChecksums = new ConcurrentHashMap<>();
-    classChecksums.put(CodeGeneratorTests.STRING, "a1360239ae25e5a179f5309a7dee53c1"); //$NON-NLS-1$
-    classChecksums.put(CodeGeneratorTests.INT, "955f6438d771b0fc07ad21b1584e72c6"); //$NON-NLS-1$
-    classChecksums.put(CodeGeneratorTests.LONG, "e50f47551d81b8b2004eb2500a0f35d8"); //$NON-NLS-1$
+    classChecksums.put(CodeGeneratorTests.STRING, "af7e802ea7485c7e837ea59aa70f98ec"); //$NON-NLS-1$
+    classChecksums.put(CodeGeneratorTests.INT, "6f5f33f18a5c9d89d2540107fcb978a7"); //$NON-NLS-1$
+    classChecksums.put(CodeGeneratorTests.LONG, "9bf780129b49c43dd103303b9b084339"); //$NON-NLS-1$
     final Map<String, String> testChecksums = new ConcurrentHashMap<>();
     testChecksums.put(CodeGeneratorTests.STRING, CodeGeneratorTests.D41D8CD98F00B204E9800998ECF8427E);
     testChecksums.put(CodeGeneratorTests.INT, CodeGeneratorTests.D41D8CD98F00B204E9800998ECF8427E);
@@ -162,16 +166,14 @@ public class CodeGeneratorTests
   /**
    * Test main with exception.
    *
-   * @throws IOException IO exception
-   * @throws NoSuchAlgorithmException  No such algorithm exception
-   * @throws InterruptedException Interrupted Exception
+   * @throws UnsupportedEncodingException Unsupported encoding exception
    */
   @Test
-  public void testMainException() throws IOException, NoSuchAlgorithmException, InterruptedException
+  /* default */ void testMainException() throws UnsupportedEncodingException
    {
     final String[] args = {CodeGeneratorTests.TEST3, "unknown"}; //$NON-NLS-1$
     CodeGenerator.main(args);
-    assertEquals("Unknown templateType", this.errContent.toString().replace("\n", "").replace("\r", ""), "System.err not as expected"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    assertEquals("Unknown templateType", this.errContent.toString(Charset.defaultCharset().name()).replace("\n", "").replace("\r", ""), "System.err not as expected"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
    }
 
  }

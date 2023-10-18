@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2022 Dipl.-Inform. Kai Hofmann. All rights reserved!
+ * Copyright (C) 2020-2023 Dipl.-Inform. Kai Hofmann. All rights reserved!
  */
 package de.powerstat.validation.values.test;
 
@@ -21,6 +21,7 @@ import de.powerstat.validation.values.{CLASSNAME};
 /**
  * {CLASSNAME} tests.
  */
+@SuppressFBWarnings({"EC_NULL_ARG", "RV_NEGATING_RESULT_OF_COMPARETO", "RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT", "SPP_USE_ZERO_WITH_COMPARATOR", "PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS"})
 public class {CLASSNAME}Tests
  {
   /**
@@ -39,7 +40,7 @@ public class {CLASSNAME}Tests
    */
   @ParameterizedTest
   @ValueSource(ints = {-1, 1, 2020})
-  public void is{CLASSNAME}(final int {FIELDNAME})
+  /* default */ void testIs{CLASSNAME}(final int {FIELDNAME})
    {
     assertEquals({FIELDNAME}, {CLASSNAME}.of({FIELDNAME}).intValue(), "Not a {FIELDNAME}!"); //$NON-NLS-1$
    }
@@ -52,7 +53,7 @@ public class {CLASSNAME}Tests
    */
   @ParameterizedTest
   @ValueSource(ints = {0})
-  public void isNotA{CLASSNAME}(final int {FIELDNAME})
+  /* default */ void testIsNotA{CLASSNAME}(final int {FIELDNAME})
    {
     assertThrows(IndexOutOfBoundsException.class, () ->
      {
@@ -66,7 +67,7 @@ public class {CLASSNAME}Tests
    * Test hash code.
    */
   @Test
-  public void testHashCode()
+  /* default */ void testHashCode()
    {
     final {CLASSNAME} {FIELDNAME}1 = {CLASSNAME}.of(1);
     final {CLASSNAME} {FIELDNAME}2 = {CLASSNAME}.of(1);
@@ -82,7 +83,8 @@ public class {CLASSNAME}Tests
    * Test equals.
    */
   @Test
-  public void testEquals()
+  @SuppressWarnings("java:S5785")
+  /* default */ void testEquals()
    {
     final {CLASSNAME} {FIELDNAME}1 = {CLASSNAME}.of(1);
     final {CLASSNAME} {FIELDNAME}2 = {CLASSNAME}.of(1);
@@ -105,7 +107,7 @@ public class {CLASSNAME}Tests
    * Test toString.
    */
   @Test
-  public void testToString()
+  /* default */ void testToString()
    {
     final {CLASSNAME} {FIELDNAME} = {CLASSNAME}.of(1);
     assertEquals("{CLASSNAME}[{FIELDNAME}=1]", {FIELDNAME}.toString(), "toString not equal"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -116,7 +118,8 @@ public class {CLASSNAME}Tests
    * Test compareTo.
    */
   @Test
-  public void testCompareTo()
+  @SuppressWarnings("java:S5785")
+  /* default */ void testCompareTo()
    {
     final {CLASSNAME} {FIELDNAME}1 = {CLASSNAME}.of(1);
     final {CLASSNAME} {FIELDNAME}2 = {CLASSNAME}.of(1);

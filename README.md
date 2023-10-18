@@ -11,7 +11,7 @@ For example when using Apache Maven you could add the following dependency to yo
     <dependency>
       <groupId>de.powerstat.validation</groupId>
       <artifactId>generator</artifactId>
-      <version>1.0</version>
+      <version>1.0.0</version>
     </dependency>
 
 Other build tools like gradle will work analogous.

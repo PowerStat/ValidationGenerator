@@ -35,7 +35,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  * Validation code generator tests.
  */
 @SuppressFBWarnings({"WEAK_MESSAGE_DIGEST_MD5", "SEC_SIDE_EFFECT_CONSTRUCTOR"})
-public class ValidationGeneratorTests
+final class ValidationGeneratorTests
  {
   /**
    * Int constant.
@@ -95,17 +95,17 @@ public class ValidationGeneratorTests
   /**
    * Checksum string.
    */
-  private static final String CHECKSUM2 = "8531b71ee92ff21d00a235342c401587"; //$NON-NLS-1$
+  private static final String CHECKSUM2 = "e914942de5bdfd6e2930898933fc7dc9"; //$NON-NLS-1$
 
   /**
    * Checksum string.
    */
-  private static final String CHECKSUM3 = "fa6501c54181928855f486e19ae970d0"; //$NON-NLS-1$
+  private static final String CHECKSUM3 = "5d58f7d16b16a1b06d0f441616d6d4cc"; //$NON-NLS-1$
 
   /**
    * Checksum string.
    */
-  private static final String CHECKSUM4 = "395cd9b0499b36f2bbc294e9af6a28df"; //$NON-NLS-1$
+  private static final String CHECKSUM4 = "683f18ee087b2f0cd5905018a583e99c"; //$NON-NLS-1$
 
   /**
    * Zero constant.
@@ -146,7 +146,7 @@ public class ValidationGeneratorTests
   /**
    * Default constructor.
    */
-  public ValidationGeneratorTests()
+  /* default */ ValidationGeneratorTests()
    {
     super();
    }
@@ -159,7 +159,7 @@ public class ValidationGeneratorTests
    */
   @ParameterizedTest
   @ValueSource(strings = {ValidationGeneratorTests.STRING, ValidationGeneratorTests.INT, ValidationGeneratorTests.LONG})
-  public void constructorTypes(final String templateType)
+  /* default */ void testConstructorTypes(final String templateType)
    {
     final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.GENERATED_SOURCES_DIR, ValidationGeneratorTests.TEST1, templateType);
     assertNotNull(generator, "Generaor creation failed"); //$NON-NLS-1$
@@ -170,7 +170,7 @@ public class ValidationGeneratorTests
    * Test constructor with Null pointer.
    */
   @Test
-  public void constructorNull1()
+  /* default */ void testConstructorNull1()
    {
     assertThrows(NullPointerException.class, () ->
      {
@@ -184,7 +184,7 @@ public class ValidationGeneratorTests
    * Test constructor with Null pointer.
    */
   @Test
-  public void constructorNull2()
+  /* default */ void testConstructorNull2()
    {
     assertThrows(NullPointerException.class, () ->
      {
@@ -198,7 +198,7 @@ public class ValidationGeneratorTests
    * Test constructor with Null pointer.
    */
   @Test
-  public void constructorNull3()
+  /* default */ void testConstructorNull3()
    {
     assertThrows(NullPointerException.class, () ->
      {
@@ -212,7 +212,7 @@ public class ValidationGeneratorTests
    * Test constructor with wrong template type.
    */
   @Test
-  public void constructorWrongType()
+  /* default */ void testConstructorWrongType()
    {
     assertThrows(IllegalArgumentException.class, () ->
      {
@@ -226,7 +226,7 @@ public class ValidationGeneratorTests
    * Test constructor with file instead of directory.
    */
   @Test
-  public void constructorNoDir()
+  /* default */ void testConstructorNoDir()
    {
     assertThrows(IllegalArgumentException.class, () ->
      {
@@ -240,7 +240,7 @@ public class ValidationGeneratorTests
    * Test constructor with wrong classname.
    */
   @Test
-  public void constructorWrongClassname()
+  /* default */ void testConstructorWrongClassname()
    {
     assertThrows(IllegalArgumentException.class, () ->
      {
@@ -259,7 +259,7 @@ public class ValidationGeneratorTests
    */
   @ParameterizedTest
   @ValueSource(strings = {ValidationGeneratorTests.STRING, ValidationGeneratorTests.INT, ValidationGeneratorTests.LONG})
-  public void getclasses(final String templateType) throws IOException, NoSuchAlgorithmException
+  /* default */ void testGetclasses(final String templateType) throws IOException, NoSuchAlgorithmException
    {
     final Map<String, String> classChecksums = new ConcurrentHashMap<>();
     classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM2);
@@ -296,7 +296,7 @@ public class ValidationGeneratorTests
    * @throws NoSuchAlgorithmException no such algorithm exception
    */
   @Test
-  public void getclassesPathTrue() throws IOException, NoSuchAlgorithmException
+  /* default */ void testGetclassesPathTrue() throws IOException, NoSuchAlgorithmException
    {
     final Map<String, String> classChecksums = new ConcurrentHashMap<>();
     classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM2);
@@ -334,10 +334,11 @@ public class ValidationGeneratorTests
    * @throws NoSuchAlgorithmException no such algorithm exception
    */
   @Test
-  public void getclassesPathFalse1() throws IOException, NoSuchAlgorithmException
+  /* default */ void testGetclassesPathFalse1() throws IOException, NoSuchAlgorithmException
    {
     assertThrows(FileSystemException.class, () ->
      {
+      /*
       final Map<String, String> classChecksums = new ConcurrentHashMap<>();
       classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM2);
       classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM4);
@@ -346,6 +347,7 @@ public class ValidationGeneratorTests
       testChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM1);
       testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM3);
       testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM3);
+      */
 
       /* final boolean success = */ new File(ValidationGeneratorTests.TARGET_TEST2).mkdir();
       final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.TARGET_TEST2, ValidationGeneratorTests.TEST2, ValidationGeneratorTests.STRING);
@@ -364,10 +366,11 @@ public class ValidationGeneratorTests
    * @throws NoSuchAlgorithmException no such algorithm exception
    */
   @Test
-  public void getclassesPathFalse2() throws IOException, NoSuchAlgorithmException
+  /* default */ void testGetclassesPathFalse2() throws IOException, NoSuchAlgorithmException
    {
     assertThrows(FileSystemException.class, () ->
      {
+      /*
       final Map<String, String> classChecksums = new ConcurrentHashMap<>();
       classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM2);
       classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM4);
@@ -376,6 +379,7 @@ public class ValidationGeneratorTests
       testChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM1);
       testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM3);
       testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM3);
+      */
 
       /* final boolean success = */ new File(ValidationGeneratorTests.TARGET_TEST3).mkdir();
       final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.TARGET_TEST3, ValidationGeneratorTests.TEST2, ValidationGeneratorTests.STRING);
