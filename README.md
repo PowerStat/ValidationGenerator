@@ -64,7 +64,7 @@ To run toolchain:
     
 If you use a sonar server:
 
-    mvn sonar:sonar -Dsonar.login=<username> -Dsonar.password=<password>
+    mvn sonar:sonar -Dsonar.token=<token>
 
 If you use [infer][https://fbinfer.com/]:
 
