@@ -1,10 +1,14 @@
 /*
- * Copyright (C) 2020-2022 Dipl.-Inform. Kai Hofmann. All rights reserved!
+ * Copyright (C) 2020-2023 Dipl.-Inform. Kai Hofmann. All rights reserved!
  */
 package de.powerstat.validation.values;
 
 
+import java.util.Map;
 import java.util.Objects;
+import java.util.WeakHashMap;
+
+import de.powerstat.validation.interfaces.IValueObject;
 
 
 /**
@@ -33,7 +37,7 @@ public final class {CLASSNAME} implements Comparable<{CLASSNAME}>, IValueObject
    * @throws NullPointerException if {FIELDNAME} is null
    * @throws IllegalArgumentException if {FIELDNAME} is not a correct {CLASSNAME}
    */
-  public {CLASSNAME}(final String {FIELDNAME})
+  private {CLASSNAME}(final String {FIELDNAME})
    {
     super();
     Objects.requireNonNull({FIELDNAME}, "{FIELDNAME}"); //$NON-NLS-1$

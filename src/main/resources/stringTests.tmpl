@@ -16,18 +16,19 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import de.powerstat.validation.values.{CLASSNAME};
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 
 /**
  * {CLASSNAME} tests.
  */
 @SuppressFBWarnings({"EC_NULL_ARG", "RV_NEGATING_RESULT_OF_COMPARETO", "RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT", "SPP_USE_ZERO_WITH_COMPARATOR", "PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS"})
-public class {CLASSNAME}Tests
+final class {CLASSNAME}Tests
  {
   /**
    * Default constructor.
    */
-  public {CLASSNAME}Tests()
+  /* default */ {CLASSNAME}Tests()
    {
     super();
    }

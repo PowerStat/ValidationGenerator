@@ -16,18 +16,19 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import de.powerstat.validation.values.{CLASSNAME};
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 
 /**
  * {CLASSNAME} tests.
  */
 @SuppressFBWarnings({"EC_NULL_ARG", "RV_NEGATING_RESULT_OF_COMPARETO", "RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT", "SPP_USE_ZERO_WITH_COMPARATOR", "PRMC_POSSIBLY_REDUNDANT_METHOD_CALLS"})
-public class {CLASSNAME}Tests
+final class {CLASSNAME}Tests
  {
   /**
    * Default constructor.
    */
-  public {CLASSNAME}Tests()
+  /* default */ {CLASSNAME}Tests()
    {
     super();
    }
@@ -39,7 +40,7 @@ public class {CLASSNAME}Tests
    * @param {FIELDNAME} {CLASSNAME}
    */
   @ParameterizedTest
-  @ValueSource(ints = {-1, 1, 2020})
+  @ValueSource(ints = {0, 1, 2020})
   /* default */ void testIs{CLASSNAME}(final int {FIELDNAME})
    {
     assertEquals({FIELDNAME}, {CLASSNAME}.of({FIELDNAME}).intValue(), "Not a {FIELDNAME}!"); //$NON-NLS-1$
@@ -52,7 +53,7 @@ public class {CLASSNAME}Tests
    * @param {FIELDNAME} {CLASSNAME}
    */
   @ParameterizedTest
-  @ValueSource(ints = {0})
+  @ValueSource(ints = {-1})
   /* default */ void testIsNotA{CLASSNAME}(final int {FIELDNAME})
    {
     assertThrows(IndexOutOfBoundsException.class, () ->
