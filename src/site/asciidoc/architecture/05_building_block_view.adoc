@@ -1,0 +1,98 @@
+[[section-building-block-view]]
+
+
+== Building Block View
+
+[plantuml, target=building-block, format=png]   
+....
+package de.powerstat.validation.generator
+{
+  class CodeGenerator
+}
+
+package de.powerstat.validation.generator.impl
+{
+  class ValidationGenerator
+}
+
+package java.io
+{
+}
+
+package java.nio
+{
+}
+
+package java.util
+{
+}
+
+package org.apache.logging.log4j
+{
+}
+
+package de.powerstat.phplib.templateengine
+{
+}
+
+java.io <-- de.powerstat.validation.generator
+java.io <-- de.powerstat.validation.generator.impl
+java.nio <-- de.powerstat.validation.generator.impl
+java.util <-- de.powerstat.validation.generator
+java.util <-- de.powerstat.validation.generator.impl
+org.apache.logging.log4j <-- de.powerstat.validation.generator.impl
+de.powerstat.phplib.templateengine <-- de.powerstat.validation.generator.impl
+de.powerstat.validation.generator.impl <-- de.powerstat.validation.generator
+....
+
+
+=== Whitebox Overall System
+
+[plantuml, target=whitebox-diagram, format=png]   
+....
+package de.powerstat.validation.generator
+{
+  class CodeGenerator
+   {
+    +{static} main(args : String[])
+   }
+}
+
+package de.powerstat.validation.generator.impl
+{
+  class ValidationGenerator
+   {
+    +ValidationGenerator(outputPath : String, className : String, templateType: String)
+    +getClasses()
+   }
+}
+
+package java.io
+{
+}
+
+package java.nio
+{
+}
+
+package java.util
+{
+}
+
+package org.apache.logging.log4j
+{
+}
+
+package de.powerstat.phplib.templateengine
+{
+}
+
+java.io <-- de.powerstat.validation.generator
+java.io <-- de.powerstat.validation.generator.impl
+java.nio <-- de.powerstat.validation.generator.impl
+java.util <-- de.powerstat.validation.generator
+java.util <-- de.powerstat.validation.generator.impl
+org.apache.logging.log4j <-- de.powerstat.validation.generator.impl
+de.powerstat.phplib.templateengine <-- de.powerstat.validation.generator.impl
+de.powerstat.validation.generator.impl <-- de.powerstat.validation.generator
+....

@@ -1,0 +1,16 @@
+[[section-glossary]]
+== Glossary
+
+[cols="e,2e" options="header"]
+|===
+|Term |Definition
+
+|GraalVM
+|Graal virtual machine, successor of JVM
+
+|Java
+|The java programming language
+
+|JVM
+|Java virtual machine
+|===

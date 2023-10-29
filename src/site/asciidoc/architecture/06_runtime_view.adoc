@@ -1,0 +1,10 @@
+[[section-runtime-view]]
+== Runtime View
+
+=== <Runtime Scenario 1>
+
+[plantuml, target=activity-diagram1, format=png]   
+....
+(*) --> "CodeGenerator.main(String[])"
+"CodeGenerator.main(String[])" --> (*)
+....

@@ -4,9 +4,7 @@
 package de.powerstat.validation.values;
 
 
-import java.util.Map;
 import java.util.Objects;
-import java.util.WeakHashMap;
 
 import de.powerstat.validation.interfaces.IValueObject;
 
@@ -16,14 +14,8 @@ import de.powerstat.validation.interfaces.IValueObject;
  *
  * Maybe DSGVO relevant.
  */
-@SuppressWarnings("PMD.UseConcurrentHashMap")
 public final class {CLASSNAME} implements Comparable<{CLASSNAME}>, IValueObject
  {
-  /**
-   * Cache for singletons.
-   */
-  private static final Map<Integer, {CLASSNAME}> CACHE = new WeakHashMap<>();
-
   /**
    * {CLASSNAME}.
    */
@@ -55,17 +47,7 @@ public final class {CLASSNAME} implements Comparable<{CLASSNAME}>, IValueObject
    */
   public static {CLASSNAME} of(final int {FIELDNAME})
    {
-    synchronized ({CLASSNAME}.class)
-     {
-      {CLASSNAME} obj = {CLASSNAME}.CACHE.get({FIELDNAME});
-      if (obj != null)
-       {
-        return obj;
-       }
-      obj = new {CLASSNAME}({FIELDNAME});
-      {CLASSNAME}.CACHE.put(Integer.valueOf({FIELDNAME}), obj);
-      return obj;
-     }
+    return new {CLASSNAME}({FIELDNAME});
    }
 
 
@@ -127,8 +109,6 @@ public final class {CLASSNAME} implements Comparable<{CLASSNAME}>, IValueObject
   @Override
   public boolean equals(final Object obj)
    {
-    return this == obj;
-    /*
     if (this == obj)
      {
       return true;
@@ -139,7 +119,6 @@ public final class {CLASSNAME} implements Comparable<{CLASSNAME}>, IValueObject
      }
     final {CLASSNAME} other = ({CLASSNAME})obj;
     return this.{FIELDNAME} == other.{FIELDNAME};
-    */
    }
 
 

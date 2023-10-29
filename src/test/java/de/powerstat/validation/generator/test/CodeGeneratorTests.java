@@ -136,9 +136,9 @@ final class CodeGeneratorTests
   /* default */ void testMain(final String templateType) throws IOException, NoSuchAlgorithmException, InterruptedException
    {
     final Map<String, String> classChecksums = new ConcurrentHashMap<>();
-    classChecksums.put(CodeGeneratorTests.STRING, "ead942d83cd87c2ba982513859cd3d3c"); //$NON-NLS-1$
-    classChecksums.put(CodeGeneratorTests.INT, "a95cfa1a845f703c93581a9637c2d579"); //$NON-NLS-1$
-    classChecksums.put(CodeGeneratorTests.LONG, "c5b15daa5708b407a35337cdb2797438"); //$NON-NLS-1$
+    classChecksums.put(CodeGeneratorTests.STRING, "4b3db28bedd153fb23ab8fcd1f99f435"); //$NON-NLS-1$
+    classChecksums.put(CodeGeneratorTests.INT, "a30e8a5311a5b17d360d051e9ddf8ce9"); //$NON-NLS-1$
+    classChecksums.put(CodeGeneratorTests.LONG, "981ccbed5406aed8363cea80cfd613ef"); //$NON-NLS-1$
     final Map<String, String> testChecksums = new ConcurrentHashMap<>();
     testChecksums.put(CodeGeneratorTests.STRING, CodeGeneratorTests.D41D8CD98F00B204E9800998ECF8427E);
     testChecksums.put(CodeGeneratorTests.INT, CodeGeneratorTests.D41D8CD98F00B204E9800998ECF8427E);

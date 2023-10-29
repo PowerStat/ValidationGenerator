@@ -1,0 +1,6 @@
+[[section-design-decisions]]
+== Architecture Decisions
+
+* Java - because its a better language than C++ and wide spread
+* Block loop logic is still within the code and not in the template
+* Template syntax is XML compatible but could also be used for code templates

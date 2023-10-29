@@ -1,0 +1,37 @@
+[[section-introduction-and-goals]]
+== Introduction and Goals
+
+This is a code generator to create skeletons for my validation.
+
+=== Requirements Overview
+
+Functional requirements are:
+
+* TODO
+
+
+.Further Information
+
+* TODO 
+
+=== Quality Goals
+
+The top quality goals are:
+
+* TODO
+* Performace efficience
+* Low memory usage
+* Security/Safety
+* Usability
+* Transferability
+
+=== Stakeholders
+
+The first stakeholder is the developer itself for his validation project. Second stakeholders are all other java or jvm language developers around the world, because it's an open source project.
+
+[options="header",cols="1,2,2"]
+|===
+|Role/Name|Contact|Expectations
+|Kai Hofmann|powerstat@web.de|Stable api, secure, fast, simple
+|Every developer|unknown|Stable api, secure, fast, simple
+|===
