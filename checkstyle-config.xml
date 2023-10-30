@@ -886,7 +886,7 @@
     <property name="ignoreLines" value=""/>
   </module>
   -->
-   <module name="RegexpHeader">
+  <module name="RegexpHeader">
     <!-- <property name="charset" value="UTF-8"/> -->
     <property name="fileExtensions" value="java"/>
     <property name="header" value="^/\*\n \* Copyright \(C\) (\d\d\d\d)(-(\d\d\d\d))?(,(\d\d\d\d)(-(\d\d\d\d))?)* Dipl.-Inform. Kai Hofmann. All rights reserved!\n \*/$"/>

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2021 Dipl.-Inform. Kai Hofmann. All rights reserved!
+ * Copyright (C) 2020-2023 Dipl.-Inform. Kai Hofmann. All rights reserved!
  */
 package de.powerstat.validation.generator;
 
@@ -32,7 +32,7 @@ public final class CodeGenerator
   /**
    * Main.
    *
-   * @param args 0: Classname; 1: template type string/int/long
+   * @param args 0: Classname; 1: template type string/int/long/enum
    */
   @SuppressWarnings({"PMD.SystemPrintln", "java:S106"})
   public static void main(final String[] args)

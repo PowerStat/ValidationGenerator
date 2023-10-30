@@ -23,7 +23,7 @@
     <classname>Test</classname>
     <classtype>string</classtype>
 
-      </properties>
+  </properties>
 
   <distributionManagement>
     <site>
@@ -82,7 +82,7 @@
             </preConfiguredRules>
           </rules>
         </configuration>
-            </plugin>
+      </plugin>
 
       <!-- TODO pandoc -> epub, markdown, odt, ... -->
 

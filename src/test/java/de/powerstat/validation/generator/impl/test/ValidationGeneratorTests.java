@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 Dipl.-Inform. Kai Hofmann. All rights reserved!
+ * Copyright (C) 2020-2023 Dipl.-Inform. Kai Hofmann. All rights reserved!
  */
 package de.powerstat.validation.generator.impl.test;
 
@@ -53,6 +53,11 @@ final class ValidationGeneratorTests
   private static final String STRING = "string"; //$NON-NLS-1$
 
   /**
+   * Enum constant.
+   */
+  private static final String ENUM = "enum"; //$NON-NLS-1$
+
+  /**
    * Test 1.
    */
   private static final String TEST1 = "Test1"; //$NON-NLS-1$
@@ -95,17 +100,22 @@ final class ValidationGeneratorTests
   /**
    * Checksum string.
    */
-  private static final String CHECKSUM2 = "8c4d2d1d4bcf4b18a70efb5bf8c691c2"; //$NON-NLS-1$
+  private static final String CHECKSUMSTRING = "8c4d2d1d4bcf4b18a70efb5bf8c691c2"; //$NON-NLS-1$
 
   /**
    * Checksum string.
    */
-  private static final String CHECKSUM3 = "031a93e197489de149b16f42fa95cca0"; //$NON-NLS-1$
+  private static final String CHECKSUMLONG = "031a93e197489de149b16f42fa95cca0"; //$NON-NLS-1$
 
   /**
    * Checksum string.
    */
-  private static final String CHECKSUM4 = "01a51a44970e95c58ae16dae0372a2e6"; //$NON-NLS-1$
+  private static final String CHECKSUMINT = "01a51a44970e95c58ae16dae0372a2e6"; //$NON-NLS-1$
+
+  /**
+   * Checksum string.
+   */
+  private static final String CHECKSUMENUM = "50a95f7a3a59356178228757671cbe5a"; //$NON-NLS-1$
 
   /**
    * Zero constant.
@@ -158,7 +168,7 @@ final class ValidationGeneratorTests
    * @param templateType Template type: string, int, long
    */
   @ParameterizedTest
-  @ValueSource(strings = {ValidationGeneratorTests.STRING, ValidationGeneratorTests.INT, ValidationGeneratorTests.LONG})
+  @ValueSource(strings = {ValidationGeneratorTests.STRING, ValidationGeneratorTests.INT, ValidationGeneratorTests.LONG, ValidationGeneratorTests.ENUM})
   /* default */ void testConstructorTypes(final String templateType)
    {
     final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.GENERATED_SOURCES_DIR, ValidationGeneratorTests.TEST1, templateType);
@@ -258,17 +268,19 @@ final class ValidationGeneratorTests
    * @throws NoSuchAlgorithmException no such algorithm exception
    */
   @ParameterizedTest
-  @ValueSource(strings = {ValidationGeneratorTests.STRING, ValidationGeneratorTests.INT, ValidationGeneratorTests.LONG})
+  @ValueSource(strings = {ValidationGeneratorTests.STRING, ValidationGeneratorTests.INT, ValidationGeneratorTests.LONG, ENUM})
   /* default */ void testGetclasses(final String templateType) throws IOException, NoSuchAlgorithmException
    {
     final Map<String, String> classChecksums = new ConcurrentHashMap<>();
-    classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM2);
-    classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM4);
-    classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM3);
+    classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUMSTRING);
+    classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUMINT);
+    classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUMLONG);
+    classChecksums.put(ValidationGeneratorTests.ENUM, ValidationGeneratorTests.CHECKSUMENUM);
     final Map<String, String> testChecksums = new ConcurrentHashMap<>();
     testChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM1);
     testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM1);
     testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM1);
+    testChecksums.put(ValidationGeneratorTests.ENUM, ValidationGeneratorTests.CHECKSUM1);
 
     final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.GENERATED_SOURCES_DIR, ValidationGeneratorTests.TEST2, templateType);
     generator.getClasses();
@@ -299,13 +311,15 @@ final class ValidationGeneratorTests
   /* default */ void testGetclassesPathTrue() throws IOException, NoSuchAlgorithmException
    {
     final Map<String, String> classChecksums = new ConcurrentHashMap<>();
-    classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM2);
-    classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM4);
-    classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM3);
+    classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUMSTRING);
+    classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUMINT);
+    classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUMLONG);
+    classChecksums.put(ValidationGeneratorTests.ENUM, ValidationGeneratorTests.CHECKSUMENUM);
     final Map<String, String> testChecksums = new ConcurrentHashMap<>();
     testChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM1);
-    testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM3);
-    testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM3);
+    testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUMLONG);
+    testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUMLONG);
+    testChecksums.put(ValidationGeneratorTests.ENUM, ValidationGeneratorTests.CHECKSUM1);
 
     /* final boolean success = */ new File(ValidationGeneratorTests.TARGET_TEST1).mkdir();
     final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.TARGET_TEST1, ValidationGeneratorTests.TEST2, ValidationGeneratorTests.STRING);
@@ -340,13 +354,15 @@ final class ValidationGeneratorTests
      {
       /*
       final Map<String, String> classChecksums = new ConcurrentHashMap<>();
-      classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM2);
-      classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM4);
-      classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM3);
+      classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUMSTRING);
+      classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUMINT);
+      classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUMLONG);
+      classChecksums.put(ValidationGeneratorTests.ENUM, ValidationGeneratorTests.CHECKSUMENUM);
       final Map<String, String> testChecksums = new ConcurrentHashMap<>();
       testChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM1);
-      testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM3);
-      testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM3);
+      testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUMLONG);
+      testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUMLONG);
+      testChecksums.put(ValidationGeneratorTests.ENUM, ValidationGeneratorTests.CHECKSUM1);
       */
 
       /* final boolean success = */ new File(ValidationGeneratorTests.TARGET_TEST2).mkdir();
@@ -372,13 +388,15 @@ final class ValidationGeneratorTests
      {
       /*
       final Map<String, String> classChecksums = new ConcurrentHashMap<>();
-      classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM2);
-      classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM4);
-      classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM3);
+      classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUMSTRING);
+      classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUMINT);
+      classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUMLONG);
+      classChecksums.put(ValidationGeneratorTests.ENUM, ValidationGeneratorTests.CHECKSUMENUM);
       final Map<String, String> testChecksums = new ConcurrentHashMap<>();
       testChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM1);
-      testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM3);
-      testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM3);
+      testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUMLONG);
+      testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUMLONG);
+      testChecksums.put(ValidationGeneratorTests.ENUM, ValidationGeneratorTests.CHECKSUM1);
       */
 
       /* final boolean success = */ new File(ValidationGeneratorTests.TARGET_TEST3).mkdir();

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2021 Dipl.-Inform. Kai Hofmann. All rights reserved!
+ * Copyright (C) 2020-2023 Dipl.-Inform. Kai Hofmann. All rights reserved!
  */
 package de.powerstat.validation.generator.impl;
 
@@ -115,6 +115,7 @@ public final class ValidationGenerator
     ValidationGenerator.TEMPLATE_TYPES.add("string"); //$NON-NLS-1$
     ValidationGenerator.TEMPLATE_TYPES.add("long"); //$NON-NLS-1$
     ValidationGenerator.TEMPLATE_TYPES.add("int"); //$NON-NLS-1$
+    ValidationGenerator.TEMPLATE_TYPES.add("enum"); //$NON-NLS-1$
    }
 
 
@@ -123,7 +124,7 @@ public final class ValidationGenerator
    *
    * @param outputPath Output path for generated code
    * @param className Class name
-   * @param templateType Template type: string, long
+   * @param templateType Template type: int, long, string, enum
    * @throws IllegalArgumentException Illegal argument
    */
   public ValidationGenerator(final String outputPath, final String className, final String templateType)

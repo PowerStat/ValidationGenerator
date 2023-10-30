@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2021 Dipl.-Inform. Kai Hofmann. All rights reserved!
+ * Copyright (C) 2020-2023 Dipl.-Inform. Kai Hofmann. All rights reserved!
  */
 package de.powerstat.validation.generator.test;
 
@@ -53,6 +53,11 @@ final class CodeGeneratorTests
    * Long constant.
    */
   private static final String LONG = "long"; //$NON-NLS-1$
+
+  /**
+   * Enum constant.
+   */
+  private static final String ENUM = "enum"; //$NON-NLS-1$
 
   /**
    * Hex constant.
@@ -132,17 +137,19 @@ final class CodeGeneratorTests
    * @throws InterruptedException Interrupted Exception
    */
   @ParameterizedTest
-  @ValueSource(strings = {CodeGeneratorTests.STRING, CodeGeneratorTests.INT, CodeGeneratorTests.LONG})
+  @ValueSource(strings = {CodeGeneratorTests.STRING, CodeGeneratorTests.INT, CodeGeneratorTests.LONG, CodeGeneratorTests.ENUM})
   /* default */ void testMain(final String templateType) throws IOException, NoSuchAlgorithmException, InterruptedException
    {
     final Map<String, String> classChecksums = new ConcurrentHashMap<>();
     classChecksums.put(CodeGeneratorTests.STRING, "4b3db28bedd153fb23ab8fcd1f99f435"); //$NON-NLS-1$
     classChecksums.put(CodeGeneratorTests.INT, "a30e8a5311a5b17d360d051e9ddf8ce9"); //$NON-NLS-1$
     classChecksums.put(CodeGeneratorTests.LONG, "981ccbed5406aed8363cea80cfd613ef"); //$NON-NLS-1$
+    classChecksums.put(CodeGeneratorTests.ENUM, "9e8e3b40f38ae3fc2897c1c1354a36be"); //$NON-NLS-1$
     final Map<String, String> testChecksums = new ConcurrentHashMap<>();
     testChecksums.put(CodeGeneratorTests.STRING, CodeGeneratorTests.D41D8CD98F00B204E9800998ECF8427E);
     testChecksums.put(CodeGeneratorTests.INT, CodeGeneratorTests.D41D8CD98F00B204E9800998ECF8427E);
     testChecksums.put(CodeGeneratorTests.LONG, CodeGeneratorTests.D41D8CD98F00B204E9800998ECF8427E);
+    testChecksums.put(CodeGeneratorTests.ENUM, CodeGeneratorTests.D41D8CD98F00B204E9800998ECF8427E);
 
     final String[] args = {CodeGeneratorTests.TEST3, templateType};
     CodeGenerator.main(args);

@@ -1,0 +1,68 @@
+/*
+ * Copyright (C) 2023 Dipl.-Inform. Kai Hofmann. All rights reserved!
+ */
+package de.powerstat.validation.values.test;
+
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import de.powerstat.validation.values.{CLASSNAME};
+
+
+/**
+ * {CLASSNAME} tests.
+ */
+final class {CLASSNAME}Tests
+ {
+  /**
+   * Action not as expected constant.
+   */
+  private static final String ACTION_NOT_AS_EXPECTED = "Action not as expected";
+
+
+  /**
+   * Default constructor.
+   */
+  /* default */ {CLASSNAME}Tests()
+   {
+    super();
+   }
+
+
+  /**
+   * Factory string test.
+   */
+  @Test
+  /* default */ void testFactory1()
+   {
+    assertEquals(0, {CLASSNAME}.of("NAME1").getAction(), ACTION_NOT_AS_EXPECTED);
+   }
+
+
+  /**
+   * Test getAction of {CLASSNAME}.
+   */
+  @Test
+  /* default */ void testGetAction()
+   {
+    assertAll("constructor", //$NON-NLS-1$
+      () -> assertEquals(0, {CLASSNAME}.NAME1.getAction(), ACTION_NOT_AS_EXPECTED),
+      () -> assertEquals(1, {CLASSNAME}.NAME2.getAction(), ACTION_NOT_AS_EXPECTED)
+    );
+   }
+
+
+  /**
+   * Test stringValue.
+   */
+  @Test
+  /* default */ void testStringValue()
+   {
+    final {CLASSNAME} test = {CLASSNAME}.NAME2;
+    assertEquals("NAME2", test.stringValue(), "stringValue not as expected");
+   }
+
+ }
