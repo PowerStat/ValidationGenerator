@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2023 Dipl.-Inform. Kai Hofmann. All rights reserved!
+ * Copyright (C) 2020-2025 Dipl.-Inform. Kai Hofmann. All rights reserved!
  */
 package de.powerstat.validation.generator.test;
 
@@ -75,6 +75,16 @@ final class CodeGeneratorTests
   private static final String TEST3 = "Test3"; //$NON-NLS-1$
 
   /**
+   * Original output stream.
+   */
+  private static final PrintStream ORIGINAL_OUT = System.out;
+
+  /**
+   * Original error stream.
+   */
+  private static final PrintStream ORIGINAL_ERR = System.err;
+
+  /**
    * Out stream.
    */
   private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -83,16 +93,6 @@ final class CodeGeneratorTests
    * Error stream.
    */
   private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-
-  /**
-   * Original output stream.
-   */
-  private final PrintStream originalOut = System.out;
-
-  /**
-   * Original error stream.
-   */
-  private final PrintStream originalErr = System.err;
 
 
   /**
@@ -112,8 +112,8 @@ final class CodeGeneratorTests
   @BeforeEach
   /* default */ void setUpStreams() throws UnsupportedEncodingException
    {
-     System.setOut(new PrintStream(this.outContent, true, Charset.defaultCharset().name()));
-     System.setErr(new PrintStream(this.errContent, true, Charset.defaultCharset().name()));
+     System.setOut(new PrintStream(outContent, true, Charset.defaultCharset().name()));
+     System.setErr(new PrintStream(errContent, true, Charset.defaultCharset().name()));
    }
 
 
@@ -123,8 +123,8 @@ final class CodeGeneratorTests
   @AfterEach
   /* default */ void restoreStreams()
    {
-    System.setOut(this.originalOut);
-    System.setErr(this.originalErr);
+    System.setOut(ORIGINAL_OUT);
+    System.setErr(ORIGINAL_ERR);
    }
 
 
@@ -180,7 +180,7 @@ final class CodeGeneratorTests
    {
     final String[] args = {CodeGeneratorTests.TEST3, "unknown"}; //$NON-NLS-1$
     CodeGenerator.main(args);
-    assertEquals("Unknown templateType", this.errContent.toString(Charset.defaultCharset().name()).replace("\n", "").replace("\r", ""), "System.err not as expected"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+    assertEquals("Unknown templateType", errContent.toString(Charset.defaultCharset().name()).replace("\n", "").replace("\r", ""), "System.err not as expected"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
    }
 
  }

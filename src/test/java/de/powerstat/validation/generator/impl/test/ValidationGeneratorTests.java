@@ -307,6 +307,7 @@ final class ValidationGeneratorTests
    * @throws IOException IO exception
    * @throws NoSuchAlgorithmException no such algorithm exception
    */
+  @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_BAD_PRACTICE")
   @Test
   /* default */ void testGetclassesPathTrue() throws IOException, NoSuchAlgorithmException
    {
@@ -347,6 +348,7 @@ final class ValidationGeneratorTests
    * @throws IOException IO exception
    * @throws NoSuchAlgorithmException no such algorithm exception
    */
+  @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_BAD_PRACTICE")
   @Test
   /* default */ void testGetclassesPathFalse1() throws IOException, NoSuchAlgorithmException
    {
@@ -381,6 +383,7 @@ final class ValidationGeneratorTests
    * @throws IOException IO exception
    * @throws NoSuchAlgorithmException no such algorithm exception
    */
+  @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_BAD_PRACTICE")
   @Test
   /* default */ void testGetclassesPathFalse2() throws IOException, NoSuchAlgorithmException
    {
