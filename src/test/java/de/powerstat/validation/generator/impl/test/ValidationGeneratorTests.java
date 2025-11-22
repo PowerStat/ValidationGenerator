@@ -294,9 +294,10 @@ final class ValidationGeneratorTests
      {
       inStream.transferTo(out);
      }
+    final String format = ValidationGeneratorTests.ZERO + (msgdigit.getDigestLength() * 2) + 'x';
     assertAll(ValidationGeneratorTests.TEST_HASH_CODE,
-      () -> assertEquals(classChecksums.get(templateType), String.format(ValidationGeneratorTests.ZERO + (msgdigit.getDigestLength() * 2) + 'x', new BigInteger(1, msgdigit.digest())), ValidationGeneratorTests.CLASS_HASH_CODES_ARE_NOT_EQUAL + templateType),
-      () -> assertEquals(testChecksums.get(templateType), String.format(ValidationGeneratorTests.ZERO + (msgdigit.getDigestLength() * 2) + 'x', new BigInteger(1, msgdigit.digest())), ValidationGeneratorTests.TEST_HASH_CODES_ARE_NOT_EQUAL + templateType)
+      () -> assertEquals(classChecksums.get(templateType), String.format(format, new BigInteger(1, msgdigit.digest())), ValidationGeneratorTests.CLASS_HASH_CODES_ARE_NOT_EQUAL + templateType),
+      () -> assertEquals(testChecksums.get(templateType), String.format(format, new BigInteger(1, msgdigit.digest())), ValidationGeneratorTests.TEST_HASH_CODES_ARE_NOT_EQUAL + templateType)
     );
    }
 
@@ -335,9 +336,10 @@ final class ValidationGeneratorTests
      {
       inStream.transferTo(out);
      }
+    final String format = ValidationGeneratorTests.ZERO + (msgdigit.getDigestLength() * 2) + 'x';
     assertAll(ValidationGeneratorTests.TEST_HASH_CODE,
-      () -> assertEquals(classChecksums.get(ValidationGeneratorTests.STRING), String.format(ValidationGeneratorTests.ZERO + (msgdigit.getDigestLength() * 2) + 'x', new BigInteger(1, msgdigit.digest())), ValidationGeneratorTests.CLASS_HASH_CODES_ARE_NOT_EQUAL + ValidationGeneratorTests.STRING),
-      () -> assertEquals(testChecksums.get(ValidationGeneratorTests.STRING), String.format(ValidationGeneratorTests.ZERO + (msgdigit.getDigestLength() * 2) + 'x', new BigInteger(1, msgdigit.digest())), ValidationGeneratorTests.TEST_HASH_CODES_ARE_NOT_EQUAL + ValidationGeneratorTests.STRING)
+      () -> assertEquals(classChecksums.get(ValidationGeneratorTests.STRING), String.format(format, new BigInteger(1, msgdigit.digest())), ValidationGeneratorTests.CLASS_HASH_CODES_ARE_NOT_EQUAL + ValidationGeneratorTests.STRING),
+      () -> assertEquals(testChecksums.get(ValidationGeneratorTests.STRING), String.format(format, new BigInteger(1, msgdigit.digest())), ValidationGeneratorTests.TEST_HASH_CODES_ARE_NOT_EQUAL + ValidationGeneratorTests.STRING)
     );
    }
 

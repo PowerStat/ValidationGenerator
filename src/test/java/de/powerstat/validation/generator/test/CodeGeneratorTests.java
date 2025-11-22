@@ -163,9 +163,10 @@ final class CodeGeneratorTests
      {
       inStream.transferTo(out);
      }
+    final String format = CodeGeneratorTests.ZERO + (msgdigi.getDigestLength() * 2) + 'x';
     assertAll("testHashCode", //$NON-NLS-1$
-      () -> assertEquals(classChecksums.get(templateType), String.format(CodeGeneratorTests.ZERO + (msgdigi.getDigestLength() * 2) + 'x', new BigInteger(1, msgdigi.digest())), "class hashCodes are not equal " + templateType), //$NON-NLS-1$
-      () -> assertEquals(testChecksums.get(templateType), String.format(CodeGeneratorTests.ZERO + (msgdigi.getDigestLength() * 2) + 'x', new BigInteger(1, msgdigi.digest())), "test hashCodes are not equal " + templateType) //$NON-NLS-1$
+      () -> assertEquals(classChecksums.get(templateType), String.format(format, new BigInteger(1, msgdigi.digest())), "class hashCodes are not equal " + templateType), //$NON-NLS-1$
+      () -> assertEquals(testChecksums.get(templateType), String.format(format, new BigInteger(1, msgdigi.digest())), "test hashCodes are not equal " + templateType) //$NON-NLS-1$
     );
    }
 
