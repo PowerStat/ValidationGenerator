@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2020-2023 Dipl.-Inform. Kai Hofmann. All rights reserved!
+ * Copyright (C) 2020-2025 Dipl.-Inform. Kai Hofmann. All rights reserved!
+ * Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements; and to You under the Apache License, Version 2.0.
  */
 package de.powerstat.validation.generator.impl;
 
@@ -147,7 +148,7 @@ public final class ValidationGenerator
       throw new IllegalArgumentException("className does not match [A-Z][a-zA-Z0-9_]*"); //$NON-NLS-1$
      }
     this.className = className;
-    this.fieldName = className.substring(0, 1).toLowerCase(Locale.getDefault()) + className.substring(1);
+    fieldName = className.substring(0, 1).toLowerCase(Locale.getDefault()) + className.substring(1);
    }
 
 
@@ -161,36 +162,36 @@ public final class ValidationGenerator
   public void getClasses() throws IOException
    {
     final var templClass = new TemplateEngine(HandleUndefined.KEEP);
-    templClass.setFile(ValidationGenerator.CLASS, new File(ValidationGenerator.RESOURCES_PATH, this.templateType + "Class.tmpl")); //$NON-NLS-1$
-    templClass.setVar(ValidationGenerator.CLASSNAME, this.className);
-    templClass.setVar(ValidationGenerator.FIELDNAME2, this.fieldName);
+    templClass.setFile(ValidationGenerator.CLASS, new File(ValidationGenerator.RESOURCES_PATH, templateType + "Class.tmpl")); //$NON-NLS-1$
+    templClass.setVar(ValidationGenerator.CLASSNAME, className);
+    templClass.setVar(ValidationGenerator.FIELDNAME2, fieldName);
     templClass.parse(ValidationGenerator.CLASS, ValidationGenerator.CLASS);
 
     final var templTests = new TemplateEngine(HandleUndefined.KEEP);
-    templTests.setFile(ValidationGenerator.TESTS, new File(ValidationGenerator.RESOURCES_PATH, this.templateType + "Tests.tmpl")); //$NON-NLS-1$
-    templTests.setVar(ValidationGenerator.CLASSNAME, this.className);
-    templTests.setVar(ValidationGenerator.FIELDNAME2, this.fieldName);
+    templTests.setFile(ValidationGenerator.TESTS, new File(ValidationGenerator.RESOURCES_PATH, templateType + "Tests.tmpl")); //$NON-NLS-1$
+    templTests.setVar(ValidationGenerator.CLASSNAME, className);
+    templTests.setVar(ValidationGenerator.FIELDNAME2, fieldName);
     templTests.parse(ValidationGenerator.TESTS, ValidationGenerator.TESTS);
 
-    final var dirClass = new File(this.outputPath, ValidationGenerator.PACKAGE_PATH);
+    final var dirClass = new File(outputPath, ValidationGenerator.PACKAGE_PATH);
     if (!dirClass.isDirectory() && !dirClass.mkdirs())
      {
-      ValidationGenerator.LOGGER.error("Could not create directory: {}/{}", this.outputPath, ValidationGenerator.PACKAGE_PATH); //$NON-NLS-1$
+      ValidationGenerator.LOGGER.error("Could not create directory: {}/{}", outputPath, ValidationGenerator.PACKAGE_PATH); //$NON-NLS-1$
       throw new FileSystemException(ValidationGenerator.COULD_NOT_CREATE_DIRECTORY + dirClass.getCanonicalPath());
      }
-    try (var out = new PrintWriter(dirClass.getAbsolutePath() + File.separator + this.className + ".java", StandardCharsets.UTF_8.name())) //$NON-NLS-1$
+    try (var out = new PrintWriter(dirClass.getAbsolutePath() + File.separator + className + ".java", StandardCharsets.UTF_8.name())) //$NON-NLS-1$
      {
       out.print(templClass.get(ValidationGenerator.CLASS));
       out.flush();
      }
 
-    final var dirTests = new File(this.outputPath, ValidationGenerator.PACKAGE_PATH + ValidationGenerator.TEST_PATH);
+    final var dirTests = new File(outputPath, ValidationGenerator.PACKAGE_PATH + ValidationGenerator.TEST_PATH);
     if (!dirTests.isDirectory() && !dirTests.mkdirs())
      {
-      ValidationGenerator.LOGGER.error("Could not create directory: {}/{}/test", this.outputPath, ValidationGenerator.PACKAGE_PATH + ValidationGenerator.TEST_PATH); //$NON-NLS-1$
+      ValidationGenerator.LOGGER.error("Could not create directory: {}/{}/test", outputPath, ValidationGenerator.PACKAGE_PATH + ValidationGenerator.TEST_PATH); //$NON-NLS-1$
       throw new FileSystemException(ValidationGenerator.COULD_NOT_CREATE_DIRECTORY + dirTests.getCanonicalPath());
      }
-    try (var out = new PrintWriter(dirTests.getAbsolutePath() + File.separator + this.className + "Tests.java", StandardCharsets.UTF_8.name())) //$NON-NLS-1$
+    try (var out = new PrintWriter(dirTests.getAbsolutePath() + File.separator + className + "Tests.java", StandardCharsets.UTF_8.name())) //$NON-NLS-1$
      {
       out.print(templTests.get(ValidationGenerator.TESTS));
       out.flush();
