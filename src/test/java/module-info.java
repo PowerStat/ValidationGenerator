@@ -13,6 +13,8 @@ open module de.powerstat.validation.generator
 
   requires de.powerstat.phplib.templateengine;
   requires org.apache.logging.log4j;
+  requires org.checkerframework.checker.qual;
+  requires org.jmolecules.ddd;
 
   requires com.github.spotbugs.annotations;
   requires org.junit.jupiter.api;

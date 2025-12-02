@@ -156,11 +156,11 @@ final class CodeGeneratorTests
     CodeGenerator.main(args);
 
     final MessageDigest msgdigi = MessageDigest.getInstance("MD5"); //$NON-NLS-1$
-    try (BufferedInputStream inStream = new BufferedInputStream((Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/Test3.java")))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigi)) //$NON-NLS-1$
+    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/Test3.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigi)) //$NON-NLS-1$
      {
       inStream.transferTo(out);
      }
-    try (BufferedInputStream inStream = new BufferedInputStream((Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/test/Test3Tests.java")))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigi)) //$NON-NLS-1$
+    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/test/Test3Tests.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigi)) //$NON-NLS-1$
      {
       inStream.transferTo(out);
      }

@@ -287,11 +287,11 @@ final class ValidationGeneratorTests
     generator.getClasses();
 
     final MessageDigest msgdigit = MessageDigest.getInstance(ValidationGeneratorTests.MD5);
-    try (BufferedInputStream inStream = new BufferedInputStream((Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/Test2.java")))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
+    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/Test2.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
      {
       inStream.transferTo(out);
      }
-    try (BufferedInputStream inStream = new BufferedInputStream((Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/test/Test2Tests.java")))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
+    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/test/Test2Tests.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
      {
       inStream.transferTo(out);
      }
@@ -329,11 +329,11 @@ final class ValidationGeneratorTests
     generator.getClasses();
 
     final MessageDigest msgdigit = MessageDigest.getInstance(ValidationGeneratorTests.MD5);
-    try (BufferedInputStream inStream = new BufferedInputStream((Files.newInputStream(Paths.get("target/test1/de/powerstat/validation/values/Test2.java")))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
+    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/test1/de/powerstat/validation/values/Test2.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
      {
       inStream.transferTo(out);
      }
-    try (BufferedInputStream inStream = new BufferedInputStream((Files.newInputStream(Paths.get("target/test1/de/powerstat/validation/values/test/Test2Tests.java")))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
+    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/test1/de/powerstat/validation/values/test/Test2Tests.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
      {
       inStream.transferTo(out);
      }

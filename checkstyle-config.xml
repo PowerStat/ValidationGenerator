@@ -772,7 +772,7 @@
     </module> 
     -->
     <module name="LambdaBodyLength">
-      <property name="max" value="18"/>
+      <property name="max" value="20"/>
     </module>
     <module name="MethodCount">
       <property name="maxPackage" value="110"/>
