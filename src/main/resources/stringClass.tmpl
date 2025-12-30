@@ -5,6 +5,9 @@ package de.powerstat.ddd.values;
 
 
 import java.util.Objects;
+import java.util.regex.Pattern;
+
+import org.jmolecules.ddd.annotation.ValueObject;
 
 import de.powerstat.ddd.interfaces.IValueObject;
 
@@ -12,14 +15,18 @@ import de.powerstat.ddd.interfaces.IValueObject;
 /**
  * {CLASSNAME}.
  *
+ * @param {FIELDNAME} {CLASSNAME}
+ *
  * Maybe DSGVO relevant.
  */
-public final class {CLASSNAME} implements Comparable<{CLASSNAME}>, IValueObject
+@ValueObject
+public record {CLASSNAME}(String {FIELDNAME}) implements Comparable<{CLASSNAME}>, IValueObject
  {
   /**
-   * {CLASSNAME}.
+   * {CLASSNAME} regexp.
    */
-  private final String {FIELDNAME};
+  @SuppressWarnings("java:S5867")
+  private static final Pattern {CLASSNAME}_REGEXP = Pattern.compile("^[\\p{L}][\\p{L}\\p{Digit} -]*$"); //$NON-NLS-1$
 
 
   /**
@@ -29,19 +36,17 @@ public final class {CLASSNAME} implements Comparable<{CLASSNAME}>, IValueObject
    * @throws NullPointerException if {FIELDNAME} is null
    * @throws IllegalArgumentException if {FIELDNAME} is not a correct {CLASSNAME}
    */
-  private {CLASSNAME}(final String {FIELDNAME})
+  public {CLASSNAME}
    {
-    super();
     Objects.requireNonNull({FIELDNAME}, "{FIELDNAME}"); //$NON-NLS-1$
     if (({FIELDNAME}.length() < 1) || ({FIELDNAME}.length() > 85))
      {
       throw new IllegalArgumentException("{CLASSNAME} with wrong length"); //$NON-NLS-1$
      }
-    if (!{FIELDNAME}.matches("^[\\p{L}][\\p{L}\\p{Digit} -]*$")) //$NON-NLS-1$
+    if (!{CLASSNAME}_REGEXP.matcher({FIELDNAME}).matches())
      {
       throw new IllegalArgumentException("{CLASSNAME} with wrong format"); //$NON-NLS-1$
      }
-    this.{FIELDNAME} = {FIELDNAME};
    }
 
 
@@ -70,61 +75,6 @@ public final class {CLASSNAME} implements Comparable<{CLASSNAME}>, IValueObject
 
 
   /**
-   * Calculate hash code.
-   *
-   * @return Hash
-   * @see java.lang.Object#hashCode()
-   */
-  @Override
-  public int hashCode()
-   {
-    return this.{FIELDNAME}.hashCode();
-   }
-
-
-  /**
-   * Is equal with another object.
-   *
-   * @param obj Object
-   * @return true when equal, false otherwise
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
-  @Override
-  public boolean equals(final Object obj)
-   {
-    if (this == obj)
-     {
-      return true;
-     }
-    if (!(obj instanceof {CLASSNAME}))
-     {
-      return false;
-     }
-    final {CLASSNAME} other = ({CLASSNAME})obj;
-    return this.{FIELDNAME}.equals(other.{FIELDNAME});
-   }
-
-
-  /**
-   * Returns the string representation of this {CLASSNAME}.
-   *
-   * The exact details of this representation are unspecified and subject to change, but the following may be regarded as typical:
-   *
-   * "{CLASSNAME}[{FIELDNAME}=Example1]"
-   *
-   * @return String representation of this {CLASSNAME}
-   * @see java.lang.Object#toString()
-   */
-  @Override
-  public String toString()
-   {
-    final var builder = new StringBuilder();
-    builder.append("{CLASSNAME}[{FIELDNAME}=").append(this.{FIELDNAME}).append(']'); //$NON-NLS-1$
-    return builder.toString();
-   }
-
-
-  /**
    * Compare with another object.
    *
    * @param obj Object to compare with
@@ -135,7 +85,7 @@ public final class {CLASSNAME} implements Comparable<{CLASSNAME}>, IValueObject
   public int compareTo(final {CLASSNAME} obj)
    {
     Objects.requireNonNull(obj, "obj"); //$NON-NLS-1$
-    return this.{FIELDNAME}.compareTo(obj.{FIELDNAME});
+    return {FIELDNAME}.compareTo(obj.{FIELDNAME});
    }
 
  }

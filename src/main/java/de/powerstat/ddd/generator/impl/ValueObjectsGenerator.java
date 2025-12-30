@@ -28,12 +28,12 @@ import de.powerstat.phplib.templateengine.TemplateEngine;
  *
  * TODO read templates from inside and outside jar
  */
-public final class ValidationGenerator
+public final class ValueObjectsGenerator
  {
   /**
    * Logger.
    */
-  private static final Logger LOGGER = LogManager.getLogger(ValidationGenerator.class);
+  private static final Logger LOGGER = LogManager.getLogger(ValueObjectsGenerator.class);
 
   /**
    * Template name constant for implementation class.
@@ -113,10 +113,10 @@ public final class ValidationGenerator
    */
   static
    {
-    ValidationGenerator.TEMPLATE_TYPES.add("string"); //$NON-NLS-1$
-    ValidationGenerator.TEMPLATE_TYPES.add("long"); //$NON-NLS-1$
-    ValidationGenerator.TEMPLATE_TYPES.add("int"); //$NON-NLS-1$
-    ValidationGenerator.TEMPLATE_TYPES.add("enum"); //$NON-NLS-1$
+    ValueObjectsGenerator.TEMPLATE_TYPES.add("string"); //$NON-NLS-1$
+    ValueObjectsGenerator.TEMPLATE_TYPES.add("long"); //$NON-NLS-1$
+    ValueObjectsGenerator.TEMPLATE_TYPES.add("int"); //$NON-NLS-1$
+    ValueObjectsGenerator.TEMPLATE_TYPES.add("enum"); //$NON-NLS-1$
    }
 
 
@@ -128,12 +128,12 @@ public final class ValidationGenerator
    * @param templateType Template type: int, long, string, enum
    * @throws IllegalArgumentException Illegal argument
    */
-  public ValidationGenerator(final String outputPath, final String className, final String templateType)
+  public ValueObjectsGenerator(final String outputPath, final String className, final String templateType)
    {
     Objects.requireNonNull(outputPath, "outputPath"); //$NON-NLS-1$
     Objects.requireNonNull(className, "className"); //$NON-NLS-1$
     Objects.requireNonNull(templateType, "templateType"); //$NON-NLS-1$
-    if (!ValidationGenerator.TEMPLATE_TYPES.contains(templateType))
+    if (!ValueObjectsGenerator.TEMPLATE_TYPES.contains(templateType))
      {
       throw new IllegalArgumentException("Unknown templateType"); //$NON-NLS-1$
      }
@@ -143,7 +143,7 @@ public final class ValidationGenerator
       throw new IllegalArgumentException("outputPath is not a directory"); //$NON-NLS-1$
      }
     this.outputPath = outputPath;
-    if (!ValidationGenerator.CLASSNAME_REGEXP.matcher(className).matches())
+    if (!ValueObjectsGenerator.CLASSNAME_REGEXP.matcher(className).matches())
      {
       throw new IllegalArgumentException("className does not match [A-Z][a-zA-Z0-9_]*"); //$NON-NLS-1$
      }
@@ -162,38 +162,38 @@ public final class ValidationGenerator
   public void getClasses() throws IOException
    {
     final var templClass = new TemplateEngine(HandleUndefined.KEEP);
-    templClass.setFile(ValidationGenerator.CLASS, new File(ValidationGenerator.RESOURCES_PATH, templateType + "Class.tmpl")); //$NON-NLS-1$
-    templClass.setVar(ValidationGenerator.CLASSNAME, className);
-    templClass.setVar(ValidationGenerator.FIELDNAME2, fieldName);
-    templClass.parse(ValidationGenerator.CLASS, ValidationGenerator.CLASS);
+    templClass.setFile(ValueObjectsGenerator.CLASS, new File(ValueObjectsGenerator.RESOURCES_PATH, templateType + "Class.tmpl")); //$NON-NLS-1$
+    templClass.setVar(ValueObjectsGenerator.CLASSNAME, className);
+    templClass.setVar(ValueObjectsGenerator.FIELDNAME2, fieldName);
+    templClass.parse(ValueObjectsGenerator.CLASS, ValueObjectsGenerator.CLASS);
 
     final var templTests = new TemplateEngine(HandleUndefined.KEEP);
-    templTests.setFile(ValidationGenerator.TESTS, new File(ValidationGenerator.RESOURCES_PATH, templateType + "Tests.tmpl")); //$NON-NLS-1$
-    templTests.setVar(ValidationGenerator.CLASSNAME, className);
-    templTests.setVar(ValidationGenerator.FIELDNAME2, fieldName);
-    templTests.parse(ValidationGenerator.TESTS, ValidationGenerator.TESTS);
+    templTests.setFile(ValueObjectsGenerator.TESTS, new File(ValueObjectsGenerator.RESOURCES_PATH, templateType + "Tests.tmpl")); //$NON-NLS-1$
+    templTests.setVar(ValueObjectsGenerator.CLASSNAME, className);
+    templTests.setVar(ValueObjectsGenerator.FIELDNAME2, fieldName);
+    templTests.parse(ValueObjectsGenerator.TESTS, ValueObjectsGenerator.TESTS);
 
-    final var dirClass = new File(outputPath, ValidationGenerator.PACKAGE_PATH);
+    final var dirClass = new File(outputPath, ValueObjectsGenerator.PACKAGE_PATH);
     if (!dirClass.isDirectory() && !dirClass.mkdirs())
      {
-      ValidationGenerator.LOGGER.error("Could not create directory: {}/{}", outputPath, ValidationGenerator.PACKAGE_PATH); //$NON-NLS-1$
-      throw new FileSystemException(ValidationGenerator.COULD_NOT_CREATE_DIRECTORY + dirClass.getCanonicalPath());
+      ValueObjectsGenerator.LOGGER.error("Could not create directory: {}/{}", outputPath, ValueObjectsGenerator.PACKAGE_PATH); //$NON-NLS-1$
+      throw new FileSystemException(ValueObjectsGenerator.COULD_NOT_CREATE_DIRECTORY + dirClass.getCanonicalPath());
      }
     try (var out = new PrintWriter(dirClass.getAbsolutePath() + File.separator + className + ".java", StandardCharsets.UTF_8.name())) //$NON-NLS-1$
      {
-      out.print(templClass.get(ValidationGenerator.CLASS));
+      out.print(templClass.get(ValueObjectsGenerator.CLASS));
       out.flush();
      }
 
-    final var dirTests = new File(outputPath, ValidationGenerator.PACKAGE_PATH + ValidationGenerator.TEST_PATH);
+    final var dirTests = new File(outputPath, ValueObjectsGenerator.PACKAGE_PATH + ValueObjectsGenerator.TEST_PATH);
     if (!dirTests.isDirectory() && !dirTests.mkdirs())
      {
-      ValidationGenerator.LOGGER.error("Could not create directory: {}/{}/test", outputPath, ValidationGenerator.PACKAGE_PATH + ValidationGenerator.TEST_PATH); //$NON-NLS-1$
-      throw new FileSystemException(ValidationGenerator.COULD_NOT_CREATE_DIRECTORY + dirTests.getCanonicalPath());
+      ValueObjectsGenerator.LOGGER.error("Could not create directory: {}/{}/test", outputPath, ValueObjectsGenerator.PACKAGE_PATH + ValueObjectsGenerator.TEST_PATH); //$NON-NLS-1$
+      throw new FileSystemException(ValueObjectsGenerator.COULD_NOT_CREATE_DIRECTORY + dirTests.getCanonicalPath());
      }
     try (var out = new PrintWriter(dirTests.getAbsolutePath() + File.separator + className + "Tests.java", StandardCharsets.UTF_8.name())) //$NON-NLS-1$
      {
-      out.print(templTests.get(ValidationGenerator.TESTS));
+      out.print(templTests.get(ValueObjectsGenerator.TESTS));
       out.flush();
      }
    }

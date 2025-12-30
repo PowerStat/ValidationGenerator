@@ -8,7 +8,7 @@ package de.powerstat.ddd.generator;
 import java.io.IOException;
 import java.util.Objects;
 
-import de.powerstat.ddd.generator.impl.ValidationGenerator;
+import de.powerstat.ddd.generator.impl.ValueObjectsGenerator;
 
 
 
@@ -42,7 +42,7 @@ public final class CodeGenerator
     Objects.requireNonNull(args[1], "arg1"); //$NON-NLS-1$
     try
      {
-      new ValidationGenerator("target/generated-sources", args[0], args[1]).getClasses(); //$NON-NLS-1$
+      new ValueObjectsGenerator("target/generated-sources", args[0], args[1]).getClasses(); //$NON-NLS-1$
      }
     catch (final IllegalArgumentException | IOException e)
      {

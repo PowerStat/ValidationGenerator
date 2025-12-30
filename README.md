@@ -1,6 +1,6 @@
 # PowerStat's ddd value objects generator
 
-this generator is for generating new ddd value object classes including unit tests.
+This generator is for generating new ddd value object records including unit tests.
 
 ## Installation
 

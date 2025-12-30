@@ -43,7 +43,7 @@ final class {CLASSNAME}Tests
   @ValueSource(longs = {0, 1, 2020})
   /* default */ void is{CLASSNAME}(final long {FIELDNAME})
    {
-    assertEquals({FIELDNAME}, {CLASSNAME}.of({FIELDNAME}).longValue(), "Not a {FIELDNAME}!"); //$NON-NLS-1$
+    assertEquals({FIELDNAME}, {CLASSNAME}.of({FIELDNAME}).{FIELDNAME}(), "Not a {FIELDNAME}!"); //$NON-NLS-1$
    }
 
 
@@ -61,57 +61,6 @@ final class {CLASSNAME}Tests
       /* final {CLASSNAME} {FIELDNAME} = */ {CLASSNAME}.of({FIELDNAME});
      }, "Index out of bounds exception expected"
     );
-   }
-
-
-  /**
-   * Test hash code.
-   */
-  @Test
-  /* default */ void testHashCode()
-   {
-    final {CLASSNAME} {FIELDNAME}1 = {CLASSNAME}.of(1);
-    final {CLASSNAME} {FIELDNAME}2 = {CLASSNAME}.of(1);
-    final {CLASSNAME} {FIELDNAME}3 = {CLASSNAME}.of(2);
-    assertAll("testHashCode", //$NON-NLS-1$
-      () -> assertEquals({FIELDNAME}1.hashCode(), {FIELDNAME}2.hashCode(), "hashCodes are not equal"), //$NON-NLS-1$
-      () -> assertNotEquals({FIELDNAME}1.hashCode(), {FIELDNAME}3.hashCode(), "hashCodes are equal") //$NON-NLS-1$
-    );
-   }
-
-
-  /**
-   * Test equals.
-   */
-  @Test
-  @SuppressWarnings("java:S5785")
-  /* default */ void testEquals()
-   {
-    final {CLASSNAME} {FIELDNAME}1 = {CLASSNAME}.of(1);
-    final {CLASSNAME} {FIELDNAME}2 = {CLASSNAME}.of(1);
-    final {CLASSNAME} {FIELDNAME}3 = {CLASSNAME}.of(2);
-    final {CLASSNAME} {FIELDNAME}4 = {CLASSNAME}.of(1);
-    assertAll("testEquals", //$NON-NLS-1$
-      () -> assertTrue({FIELDNAME}1.equals({FIELDNAME}1), "{FIELDNAME}11 is not equal"), //$NON-NLS-1$
-      () -> assertTrue({FIELDNAME}1.equals({FIELDNAME}2), "{FIELDNAME}12 are not equal"), //$NON-NLS-1$
-      () -> assertTrue({FIELDNAME}2.equals({FIELDNAME}1), "{FIELDNAME}21 are not equal"), //$NON-NLS-1$
-      () -> assertTrue({FIELDNAME}2.equals({FIELDNAME}4), "{FIELDNAME}24 are not equal"), //$NON-NLS-1$
-      () -> assertTrue({FIELDNAME}1.equals({FIELDNAME}4), "{FIELDNAME}14 are not equal"), //$NON-NLS-1$
-      () -> assertFalse({FIELDNAME}1.equals({FIELDNAME}3), "{FIELDNAME}13 are equal"), //$NON-NLS-1$
-      () -> assertFalse({FIELDNAME}3.equals({FIELDNAME}1), "{FIELDNAME}31 are equal"), //$NON-NLS-1$
-      () -> assertFalse({FIELDNAME}1.equals(null), "{FIELDNAME}10 is equal") //$NON-NLS-1$
-    );
-   }
-
-
-  /**
-   * Test toString.
-   */
-  @Test
-  /* default */ void testToString()
-   {
-    final {CLASSNAME} {FIELDNAME} = {CLASSNAME}.of(1);
-    assertEquals("{CLASSNAME}[{FIELDNAME}=1]", {FIELDNAME}.toString(), "toString not equal"); //$NON-NLS-1$ //$NON-NLS-2$
    }
 
 

@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import de.powerstat.ddd.generator.impl.ValidationGenerator;
+import de.powerstat.ddd.generator.impl.ValueObjectsGenerator;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 
@@ -36,7 +36,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  * Validation code generator tests.
  */
 @SuppressFBWarnings({"WEAK_MESSAGE_DIGEST_MD5", "SEC_SIDE_EFFECT_CONSTRUCTOR"})
-final class ValidationGeneratorTests
+final class ValueObjectsGeneratorTests
  {
   /**
    * Int constant.
@@ -101,22 +101,22 @@ final class ValidationGeneratorTests
   /**
    * Checksum string.
    */
-  private static final String CHECKSUMSTRING = "f9d0033c73fe62506d6f98ab11fcd7c4"; //$NON-NLS-1$
+  private static final String CHECKSUMSTRING = "b2b331da1029223edc4a98aeb0252182"; //$NON-NLS-1$
 
   /**
    * Checksum string.
    */
-  private static final String CHECKSUMLONG = "dd74625a33f9778fa3f72c98c5180588"; //$NON-NLS-1$
+  private static final String CHECKSUMLONG = "ebaba5b7c10d318c75afcde7ea6a0e69"; //$NON-NLS-1$
 
   /**
    * Checksum string.
    */
-  private static final String CHECKSUMINT = "cbd864b7d474c52f923607a937d856aa"; //$NON-NLS-1$
+  private static final String CHECKSUMINT = "7128b054c407876aa8247731a9ef5393"; //$NON-NLS-1$
 
   /**
    * Checksum string.
    */
-  private static final String CHECKSUMENUM = "67796738d4f77ce55ae2419a8a72b2e5"; //$NON-NLS-1$
+  private static final String CHECKSUMENUM = "98d535a2d63b997dda84e6919ccf453a"; //$NON-NLS-1$
 
   /**
    * Zero constant.
@@ -157,7 +157,7 @@ final class ValidationGeneratorTests
   /**
    * Default constructor.
    */
-  /* default */ ValidationGeneratorTests()
+  ValueObjectsGeneratorTests()
    {
     super();
    }
@@ -169,10 +169,10 @@ final class ValidationGeneratorTests
    * @param templateType Template type: string, int, long
    */
   @ParameterizedTest
-  @ValueSource(strings = {ValidationGeneratorTests.STRING, ValidationGeneratorTests.INT, ValidationGeneratorTests.LONG, ValidationGeneratorTests.ENUM})
+  @ValueSource(strings = {ValueObjectsGeneratorTests.STRING, ValueObjectsGeneratorTests.INT, ValueObjectsGeneratorTests.LONG, ValueObjectsGeneratorTests.ENUM})
   /* default */ void testConstructorTypes(final String templateType)
    {
-    final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.GENERATED_SOURCES_DIR, ValidationGeneratorTests.TEST1, templateType);
+    final ValueObjectsGenerator generator = new ValueObjectsGenerator(ValueObjectsGeneratorTests.GENERATED_SOURCES_DIR, ValueObjectsGeneratorTests.TEST1, templateType);
     assertNotNull(generator, "Generaor creation failed"); //$NON-NLS-1$
    }
 
@@ -185,8 +185,8 @@ final class ValidationGeneratorTests
    {
     assertThrows(NullPointerException.class, () ->
      {
-      /* final ValidationGenerator generator = */ new ValidationGenerator(null, ValidationGeneratorTests.TEST1, ValidationGeneratorTests.STRING);
-     }, ValidationGeneratorTests.NULL_POINTER_EXCEPTION_EXPECTED
+      /* final ValidationGenerator generator = */ new ValueObjectsGenerator(null, ValueObjectsGeneratorTests.TEST1, ValueObjectsGeneratorTests.STRING);
+     }, ValueObjectsGeneratorTests.NULL_POINTER_EXCEPTION_EXPECTED
     );
    }
 
@@ -199,8 +199,8 @@ final class ValidationGeneratorTests
    {
     assertThrows(NullPointerException.class, () ->
      {
-      /* final ValidationGenerator generator = */ new ValidationGenerator(ValidationGeneratorTests.GENERATED_SOURCES_DIR, null, ValidationGeneratorTests.STRING);
-     }, ValidationGeneratorTests.NULL_POINTER_EXCEPTION_EXPECTED
+      /* final ValidationGenerator generator = */ new ValueObjectsGenerator(ValueObjectsGeneratorTests.GENERATED_SOURCES_DIR, null, ValueObjectsGeneratorTests.STRING);
+     }, ValueObjectsGeneratorTests.NULL_POINTER_EXCEPTION_EXPECTED
     );
    }
 
@@ -213,8 +213,8 @@ final class ValidationGeneratorTests
    {
     assertThrows(NullPointerException.class, () ->
      {
-      /* final ValidationGenerator generator = */ new ValidationGenerator(ValidationGeneratorTests.GENERATED_SOURCES_DIR, ValidationGeneratorTests.TEST1, null);
-     }, ValidationGeneratorTests.NULL_POINTER_EXCEPTION_EXPECTED
+      /* final ValidationGenerator generator = */ new ValueObjectsGenerator(ValueObjectsGeneratorTests.GENERATED_SOURCES_DIR, ValueObjectsGeneratorTests.TEST1, null);
+     }, ValueObjectsGeneratorTests.NULL_POINTER_EXCEPTION_EXPECTED
     );
    }
 
@@ -227,8 +227,8 @@ final class ValidationGeneratorTests
    {
     assertThrows(IllegalArgumentException.class, () ->
      {
-      /* final ValidationGenerator generator = */ new ValidationGenerator(ValidationGeneratorTests.GENERATED_SOURCES_DIR, ValidationGeneratorTests.TEST1, ""); //$NON-NLS-1$
-     }, ValidationGeneratorTests.ILLEGAL_ARGUMENT_EXCEPTION_EXPECTED
+      /* final ValidationGenerator generator = */ new ValueObjectsGenerator(ValueObjectsGeneratorTests.GENERATED_SOURCES_DIR, ValueObjectsGeneratorTests.TEST1, ""); //$NON-NLS-1$
+     }, ValueObjectsGeneratorTests.ILLEGAL_ARGUMENT_EXCEPTION_EXPECTED
     );
    }
 
@@ -241,8 +241,8 @@ final class ValidationGeneratorTests
    {
     assertThrows(IllegalArgumentException.class, () ->
      {
-      /* final ValidationGenerator generator = */ new ValidationGenerator(ValidationGeneratorTests.GENERATED_SOURCES_DIR + "/de/powerstat/validation/values/test/Test2Tests.java", ValidationGeneratorTests.TEST1, ValidationGeneratorTests.STRING); //$NON-NLS-1$
-     }, ValidationGeneratorTests.ILLEGAL_ARGUMENT_EXCEPTION_EXPECTED
+      /* final ValidationGenerator generator = */ new ValueObjectsGenerator(ValueObjectsGeneratorTests.GENERATED_SOURCES_DIR + "/de/powerstat/validation/values/test/Test2Tests.java", ValueObjectsGeneratorTests.TEST1, ValueObjectsGeneratorTests.STRING); //$NON-NLS-1$
+     }, ValueObjectsGeneratorTests.ILLEGAL_ARGUMENT_EXCEPTION_EXPECTED
     );
    }
 
@@ -255,8 +255,8 @@ final class ValidationGeneratorTests
    {
     assertThrows(IllegalArgumentException.class, () ->
      {
-      /* final ValidationGenerator generator = */ new ValidationGenerator(ValidationGeneratorTests.GENERATED_SOURCES_DIR, "test1", ValidationGeneratorTests.STRING); //$NON-NLS-1$
-     }, ValidationGeneratorTests.ILLEGAL_ARGUMENT_EXCEPTION_EXPECTED
+      /* final ValidationGenerator generator = */ new ValueObjectsGenerator(ValueObjectsGeneratorTests.GENERATED_SOURCES_DIR, "test1", ValueObjectsGeneratorTests.STRING); //$NON-NLS-1$
+     }, ValueObjectsGeneratorTests.ILLEGAL_ARGUMENT_EXCEPTION_EXPECTED
     );
    }
 
@@ -269,24 +269,24 @@ final class ValidationGeneratorTests
    * @throws NoSuchAlgorithmException no such algorithm exception
    */
   @ParameterizedTest
-  @ValueSource(strings = {ValidationGeneratorTests.STRING, ValidationGeneratorTests.INT, ValidationGeneratorTests.LONG, ENUM})
+  @ValueSource(strings = {ValueObjectsGeneratorTests.STRING, ValueObjectsGeneratorTests.INT, ValueObjectsGeneratorTests.LONG, ENUM})
   /* default */ void testGetclasses(final String templateType) throws IOException, NoSuchAlgorithmException
    {
     final Map<String, String> classChecksums = new ConcurrentHashMap<>();
-    classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUMSTRING);
-    classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUMINT);
-    classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUMLONG);
-    classChecksums.put(ValidationGeneratorTests.ENUM, ValidationGeneratorTests.CHECKSUMENUM);
+    classChecksums.put(ValueObjectsGeneratorTests.STRING, ValueObjectsGeneratorTests.CHECKSUMSTRING);
+    classChecksums.put(ValueObjectsGeneratorTests.INT, ValueObjectsGeneratorTests.CHECKSUMINT);
+    classChecksums.put(ValueObjectsGeneratorTests.LONG, ValueObjectsGeneratorTests.CHECKSUMLONG);
+    classChecksums.put(ValueObjectsGeneratorTests.ENUM, ValueObjectsGeneratorTests.CHECKSUMENUM);
     final Map<String, String> testChecksums = new ConcurrentHashMap<>();
-    testChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM1);
-    testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUM1);
-    testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUM1);
-    testChecksums.put(ValidationGeneratorTests.ENUM, ValidationGeneratorTests.CHECKSUM1);
+    testChecksums.put(ValueObjectsGeneratorTests.STRING, ValueObjectsGeneratorTests.CHECKSUM1);
+    testChecksums.put(ValueObjectsGeneratorTests.INT, ValueObjectsGeneratorTests.CHECKSUM1);
+    testChecksums.put(ValueObjectsGeneratorTests.LONG, ValueObjectsGeneratorTests.CHECKSUM1);
+    testChecksums.put(ValueObjectsGeneratorTests.ENUM, ValueObjectsGeneratorTests.CHECKSUM1);
 
-    final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.GENERATED_SOURCES_DIR, ValidationGeneratorTests.TEST2, templateType);
+    final ValueObjectsGenerator generator = new ValueObjectsGenerator(ValueObjectsGeneratorTests.GENERATED_SOURCES_DIR, ValueObjectsGeneratorTests.TEST2, templateType);
     generator.getClasses();
 
-    final MessageDigest msgdigit = MessageDigest.getInstance(ValidationGeneratorTests.MD5);
+    final MessageDigest msgdigit = MessageDigest.getInstance(ValueObjectsGeneratorTests.MD5);
     try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/ddd/values/Test2.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
      {
       inStream.transferTo(out);
@@ -295,10 +295,10 @@ final class ValidationGeneratorTests
      {
       inStream.transferTo(out);
      }
-    final String format = ValidationGeneratorTests.ZERO + (msgdigit.getDigestLength() * 2) + 'x';
-    assertAll(ValidationGeneratorTests.TEST_HASH_CODE,
-      () -> assertEquals(classChecksums.get(templateType), String.format(format, new BigInteger(1, msgdigit.digest())), ValidationGeneratorTests.CLASS_HASH_CODES_ARE_NOT_EQUAL + templateType),
-      () -> assertEquals(testChecksums.get(templateType), String.format(format, new BigInteger(1, msgdigit.digest())), ValidationGeneratorTests.TEST_HASH_CODES_ARE_NOT_EQUAL + templateType)
+    final String format = ValueObjectsGeneratorTests.ZERO + (msgdigit.getDigestLength() * 2) + 'x';
+    assertAll(ValueObjectsGeneratorTests.TEST_HASH_CODE,
+      () -> assertEquals(classChecksums.get(templateType), String.format(format, new BigInteger(1, msgdigit.digest())), ValueObjectsGeneratorTests.CLASS_HASH_CODES_ARE_NOT_EQUAL + templateType),
+      () -> assertEquals(testChecksums.get(templateType), String.format(format, new BigInteger(1, msgdigit.digest())), ValueObjectsGeneratorTests.TEST_HASH_CODES_ARE_NOT_EQUAL + templateType)
     );
    }
 
@@ -314,21 +314,21 @@ final class ValidationGeneratorTests
   /* default */ void testGetclassesPathTrue() throws IOException, NoSuchAlgorithmException
    {
     final Map<String, String> classChecksums = new ConcurrentHashMap<>();
-    classChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUMSTRING);
-    classChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUMINT);
-    classChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUMLONG);
-    classChecksums.put(ValidationGeneratorTests.ENUM, ValidationGeneratorTests.CHECKSUMENUM);
+    classChecksums.put(ValueObjectsGeneratorTests.STRING, ValueObjectsGeneratorTests.CHECKSUMSTRING);
+    classChecksums.put(ValueObjectsGeneratorTests.INT, ValueObjectsGeneratorTests.CHECKSUMINT);
+    classChecksums.put(ValueObjectsGeneratorTests.LONG, ValueObjectsGeneratorTests.CHECKSUMLONG);
+    classChecksums.put(ValueObjectsGeneratorTests.ENUM, ValueObjectsGeneratorTests.CHECKSUMENUM);
     final Map<String, String> testChecksums = new ConcurrentHashMap<>();
-    testChecksums.put(ValidationGeneratorTests.STRING, ValidationGeneratorTests.CHECKSUM1);
-    testChecksums.put(ValidationGeneratorTests.INT, ValidationGeneratorTests.CHECKSUMLONG);
-    testChecksums.put(ValidationGeneratorTests.LONG, ValidationGeneratorTests.CHECKSUMLONG);
-    testChecksums.put(ValidationGeneratorTests.ENUM, ValidationGeneratorTests.CHECKSUM1);
+    testChecksums.put(ValueObjectsGeneratorTests.STRING, ValueObjectsGeneratorTests.CHECKSUM1);
+    testChecksums.put(ValueObjectsGeneratorTests.INT, ValueObjectsGeneratorTests.CHECKSUMLONG);
+    testChecksums.put(ValueObjectsGeneratorTests.LONG, ValueObjectsGeneratorTests.CHECKSUMLONG);
+    testChecksums.put(ValueObjectsGeneratorTests.ENUM, ValueObjectsGeneratorTests.CHECKSUM1);
 
-    /* final boolean success = */ new File(ValidationGeneratorTests.TARGET_TEST1).mkdir();
-    final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.TARGET_TEST1, ValidationGeneratorTests.TEST2, ValidationGeneratorTests.STRING);
+    /* final boolean success = */ new File(ValueObjectsGeneratorTests.TARGET_TEST1).mkdir();
+    final ValueObjectsGenerator generator = new ValueObjectsGenerator(ValueObjectsGeneratorTests.TARGET_TEST1, ValueObjectsGeneratorTests.TEST2, ValueObjectsGeneratorTests.STRING);
     generator.getClasses();
 
-    final MessageDigest msgdigit = MessageDigest.getInstance(ValidationGeneratorTests.MD5);
+    final MessageDigest msgdigit = MessageDigest.getInstance(ValueObjectsGeneratorTests.MD5);
     try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/test1/de/powerstat/ddd/values/Test2.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
      {
       inStream.transferTo(out);
@@ -337,10 +337,10 @@ final class ValidationGeneratorTests
      {
       inStream.transferTo(out);
      }
-    final String format = ValidationGeneratorTests.ZERO + (msgdigit.getDigestLength() * 2) + 'x';
-    assertAll(ValidationGeneratorTests.TEST_HASH_CODE,
-      () -> assertEquals(classChecksums.get(ValidationGeneratorTests.STRING), String.format(format, new BigInteger(1, msgdigit.digest())), ValidationGeneratorTests.CLASS_HASH_CODES_ARE_NOT_EQUAL + ValidationGeneratorTests.STRING),
-      () -> assertEquals(testChecksums.get(ValidationGeneratorTests.STRING), String.format(format, new BigInteger(1, msgdigit.digest())), ValidationGeneratorTests.TEST_HASH_CODES_ARE_NOT_EQUAL + ValidationGeneratorTests.STRING)
+    final String format = ValueObjectsGeneratorTests.ZERO + (msgdigit.getDigestLength() * 2) + 'x';
+    assertAll(ValueObjectsGeneratorTests.TEST_HASH_CODE,
+      () -> assertEquals(classChecksums.get(ValueObjectsGeneratorTests.STRING), String.format(format, new BigInteger(1, msgdigit.digest())), ValueObjectsGeneratorTests.CLASS_HASH_CODES_ARE_NOT_EQUAL + ValueObjectsGeneratorTests.STRING),
+      () -> assertEquals(testChecksums.get(ValueObjectsGeneratorTests.STRING), String.format(format, new BigInteger(1, msgdigit.digest())), ValueObjectsGeneratorTests.TEST_HASH_CODES_ARE_NOT_EQUAL + ValueObjectsGeneratorTests.STRING)
     );
    }
 
@@ -370,12 +370,12 @@ final class ValidationGeneratorTests
       testChecksums.put(ValidationGeneratorTests.ENUM, ValidationGeneratorTests.CHECKSUM1);
       */
 
-      /* final boolean success = */ new File(ValidationGeneratorTests.TARGET_TEST2).mkdir();
-      final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.TARGET_TEST2, ValidationGeneratorTests.TEST2, ValidationGeneratorTests.STRING);
+      /* final boolean success = */ new File(ValueObjectsGeneratorTests.TARGET_TEST2).mkdir();
+      final ValueObjectsGenerator generator = new ValueObjectsGenerator(ValueObjectsGeneratorTests.TARGET_TEST2, ValueObjectsGeneratorTests.TEST2, ValueObjectsGeneratorTests.STRING);
       /* final boolean success = */ new File("target/test2/de/powerstat/ddd").mkdirs(); //$NON-NLS-1$
       Files.createFile(Paths.get("target/test2/de/powerstat/ddd/values")); //$NON-NLS-1$
       generator.getClasses();
-     }, ValidationGeneratorTests.FILE_SYSTEM_EXCEPTION_EXPECTED
+     }, ValueObjectsGeneratorTests.FILE_SYSTEM_EXCEPTION_EXPECTED
     );
    }
 
@@ -405,12 +405,12 @@ final class ValidationGeneratorTests
       testChecksums.put(ValidationGeneratorTests.ENUM, ValidationGeneratorTests.CHECKSUM1);
       */
 
-      /* final boolean success = */ new File(ValidationGeneratorTests.TARGET_TEST3).mkdir();
-      final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.TARGET_TEST3, ValidationGeneratorTests.TEST2, ValidationGeneratorTests.STRING);
+      /* final boolean success = */ new File(ValueObjectsGeneratorTests.TARGET_TEST3).mkdir();
+      final ValueObjectsGenerator generator = new ValueObjectsGenerator(ValueObjectsGeneratorTests.TARGET_TEST3, ValueObjectsGeneratorTests.TEST2, ValueObjectsGeneratorTests.STRING);
       /* final boolean success = */ new File("target/test3/de/powerstat/ddd/values").mkdirs(); //$NON-NLS-1$
       Files.createFile(Paths.get("target/test3/de/powerstat/ddd/values/test")); //$NON-NLS-1$
       generator.getClasses();
-     }, ValidationGeneratorTests.FILE_SYSTEM_EXCEPTION_EXPECTED
+     }, ValueObjectsGeneratorTests.FILE_SYSTEM_EXCEPTION_EXPECTED
     );
    }
 

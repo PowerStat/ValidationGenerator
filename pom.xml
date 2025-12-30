@@ -20,7 +20,7 @@
 
   <properties>
     <license.inceptionYear>2020</license.inceptionYear>
-    <imageName>validationGenerator</imageName>
+    <imageName>valueObjectsGenerator</imageName>
     <mainClass>de.powerstat.ddd.generator.CodeGenerator</mainClass>
     
     <classname>Test</classname>
@@ -56,7 +56,6 @@
         <configuration>
           <archive>
             <manifestEntries>
-              <!-- <Build-Number>${buildNumber}</Build-Number> -->
               <Version>${project.version}</Version>
               <GIT>https://github.com/PowerStat/ValueObjectsGenerator.git</GIT>
               <SCM-Revision>${buildNumber}</SCM-Revision>
@@ -92,7 +91,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
-        <version>3.6.2</version>
+        <version>3.6.3</version>
         <configuration>
           <mainClass>${mainClass}</mainClass>
           <arguments>
@@ -105,7 +104,7 @@
           <dependency>
             <groupId>de.powerstat.ddd</groupId>
             <artifactId>generator</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
           </dependency>
         
         </dependencies>
