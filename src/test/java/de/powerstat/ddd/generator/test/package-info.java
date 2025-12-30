@@ -5,6 +5,6 @@
 
 
 /**
- * Validation code generator.
+ * DDD value objects code generator test.
  */
-package de.powerstat.validation.generator;
+package de.powerstat.ddd.generator.test;

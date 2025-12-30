@@ -7,9 +7,9 @@
 /**
  * Validation generator module test.
  */
-open module de.powerstat.validation.generator
+open module de.powerstat.ddd.generator
  {
-  exports de.powerstat.validation.generator;
+  exports de.powerstat.ddd.generator;
 
   requires de.powerstat.phplib.templateengine;
   requires org.apache.logging.log4j;

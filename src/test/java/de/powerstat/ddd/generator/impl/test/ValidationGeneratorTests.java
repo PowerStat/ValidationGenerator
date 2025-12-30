@@ -2,7 +2,7 @@
  * Copyright (C) 2020-2025 Dipl.-Inform. Kai Hofmann. All rights reserved!
  * Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements; and to You under the Apache License, Version 2.0.
  */
-package de.powerstat.validation.generator.impl.test;
+package de.powerstat.ddd.generator.impl.test;
 
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import de.powerstat.validation.generator.impl.ValidationGenerator;
+import de.powerstat.ddd.generator.impl.ValidationGenerator;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 
@@ -101,22 +101,22 @@ final class ValidationGeneratorTests
   /**
    * Checksum string.
    */
-  private static final String CHECKSUMSTRING = "8c4d2d1d4bcf4b18a70efb5bf8c691c2"; //$NON-NLS-1$
+  private static final String CHECKSUMSTRING = "f9d0033c73fe62506d6f98ab11fcd7c4"; //$NON-NLS-1$
 
   /**
    * Checksum string.
    */
-  private static final String CHECKSUMLONG = "031a93e197489de149b16f42fa95cca0"; //$NON-NLS-1$
+  private static final String CHECKSUMLONG = "dd74625a33f9778fa3f72c98c5180588"; //$NON-NLS-1$
 
   /**
    * Checksum string.
    */
-  private static final String CHECKSUMINT = "01a51a44970e95c58ae16dae0372a2e6"; //$NON-NLS-1$
+  private static final String CHECKSUMINT = "cbd864b7d474c52f923607a937d856aa"; //$NON-NLS-1$
 
   /**
    * Checksum string.
    */
-  private static final String CHECKSUMENUM = "50a95f7a3a59356178228757671cbe5a"; //$NON-NLS-1$
+  private static final String CHECKSUMENUM = "67796738d4f77ce55ae2419a8a72b2e5"; //$NON-NLS-1$
 
   /**
    * Zero constant.
@@ -287,11 +287,11 @@ final class ValidationGeneratorTests
     generator.getClasses();
 
     final MessageDigest msgdigit = MessageDigest.getInstance(ValidationGeneratorTests.MD5);
-    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/Test2.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
+    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/ddd/values/Test2.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
      {
       inStream.transferTo(out);
      }
-    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/test/Test2Tests.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
+    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/ddd/values/test/Test2Tests.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
      {
       inStream.transferTo(out);
      }
@@ -329,11 +329,11 @@ final class ValidationGeneratorTests
     generator.getClasses();
 
     final MessageDigest msgdigit = MessageDigest.getInstance(ValidationGeneratorTests.MD5);
-    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/test1/de/powerstat/validation/values/Test2.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
+    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/test1/de/powerstat/ddd/values/Test2.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
      {
       inStream.transferTo(out);
      }
-    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/test1/de/powerstat/validation/values/test/Test2Tests.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
+    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/test1/de/powerstat/ddd/values/test/Test2Tests.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigit)) //$NON-NLS-1$
      {
       inStream.transferTo(out);
      }
@@ -372,8 +372,8 @@ final class ValidationGeneratorTests
 
       /* final boolean success = */ new File(ValidationGeneratorTests.TARGET_TEST2).mkdir();
       final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.TARGET_TEST2, ValidationGeneratorTests.TEST2, ValidationGeneratorTests.STRING);
-      /* final boolean success = */ new File("target/test2/de/powerstat/validation").mkdirs(); //$NON-NLS-1$
-      Files.createFile(Paths.get("target/test2/de/powerstat/validation/values")); //$NON-NLS-1$
+      /* final boolean success = */ new File("target/test2/de/powerstat/ddd").mkdirs(); //$NON-NLS-1$
+      Files.createFile(Paths.get("target/test2/de/powerstat/ddd/values")); //$NON-NLS-1$
       generator.getClasses();
      }, ValidationGeneratorTests.FILE_SYSTEM_EXCEPTION_EXPECTED
     );
@@ -407,8 +407,8 @@ final class ValidationGeneratorTests
 
       /* final boolean success = */ new File(ValidationGeneratorTests.TARGET_TEST3).mkdir();
       final ValidationGenerator generator = new ValidationGenerator(ValidationGeneratorTests.TARGET_TEST3, ValidationGeneratorTests.TEST2, ValidationGeneratorTests.STRING);
-      /* final boolean success = */ new File("target/test3/de/powerstat/validation/values").mkdirs(); //$NON-NLS-1$
-      Files.createFile(Paths.get("target/test3/de/powerstat/validation/values/test")); //$NON-NLS-1$
+      /* final boolean success = */ new File("target/test3/de/powerstat/ddd/values").mkdirs(); //$NON-NLS-1$
+      Files.createFile(Paths.get("target/test3/de/powerstat/ddd/values/test")); //$NON-NLS-1$
       generator.getClasses();
      }, ValidationGeneratorTests.FILE_SYSTEM_EXCEPTION_EXPECTED
     );

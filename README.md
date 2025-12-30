@@ -1,6 +1,6 @@
-# PowerStat's validation generator
+# PowerStat's ddd value objects generator
 
-this generator is for generating new validation classes including unit tests.
+this generator is for generating new ddd value object classes including unit tests.
 
 ## Installation
 
@@ -9,7 +9,7 @@ Because this library is only useful for developers the installation depends on y
 For example when using Apache Maven you could add the following dependency to your project:
 
     <dependency>
-      <groupId>de.powerstat.validation</groupId>
+      <groupId>de.powerstat.ddd</groupId>
       <artifactId>generator</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </dependency>

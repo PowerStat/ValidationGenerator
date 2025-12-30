@@ -5,11 +5,11 @@
 
 
 /**
- * Validation generator module.
+ * DDD value objects generator module.
  */
-module de.powerstat.validation.generator
+module de.powerstat.ddd.generator
  {
-  exports de.powerstat.validation.generator;
+  exports de.powerstat.ddd.generator;
 
   requires de.powerstat.phplib.templateengine;
   requires org.apache.logging.log4j;

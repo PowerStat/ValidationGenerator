@@ -2,7 +2,7 @@
  * Copyright (C) 2020-2025 Dipl.-Inform. Kai Hofmann. All rights reserved!
  * Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements; and to You under the Apache License, Version 2.0.
  */
-package de.powerstat.validation.generator.impl;
+package de.powerstat.ddd.generator.impl;
 
 
 import java.io.File;
@@ -48,7 +48,7 @@ public final class ValidationGenerator
   /**
    * Package path.
    */
-  private static final String PACKAGE_PATH = "de/powerstat/validation/values"; //$NON-NLS-1$
+  private static final String PACKAGE_PATH = "de/powerstat/ddd/values"; //$NON-NLS-1$
 
   /**
    * Resources path.

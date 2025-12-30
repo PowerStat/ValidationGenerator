@@ -2,7 +2,7 @@
  * Copyright (C) 2020-2025 Dipl.-Inform. Kai Hofmann. All rights reserved!
  * Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements; and to You under the Apache License, Version 2.0.
  */
-package de.powerstat.validation.generator.test;
+package de.powerstat.ddd.generator.test;
 
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import de.powerstat.validation.generator.CodeGenerator;
+import de.powerstat.ddd.generator.CodeGenerator;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
 
@@ -142,10 +142,10 @@ final class CodeGeneratorTests
   /* default */ void testMain(final String templateType) throws IOException, NoSuchAlgorithmException, InterruptedException
    {
     final Map<String, String> classChecksums = new ConcurrentHashMap<>();
-    classChecksums.put(CodeGeneratorTests.STRING, "4b3db28bedd153fb23ab8fcd1f99f435"); //$NON-NLS-1$
-    classChecksums.put(CodeGeneratorTests.INT, "a30e8a5311a5b17d360d051e9ddf8ce9"); //$NON-NLS-1$
-    classChecksums.put(CodeGeneratorTests.LONG, "981ccbed5406aed8363cea80cfd613ef"); //$NON-NLS-1$
-    classChecksums.put(CodeGeneratorTests.ENUM, "9e8e3b40f38ae3fc2897c1c1354a36be"); //$NON-NLS-1$
+    classChecksums.put(CodeGeneratorTests.STRING, "466a5de4245f1e76e2479dffd3c58fe5"); //$NON-NLS-1$
+    classChecksums.put(CodeGeneratorTests.INT, "daf5c63a98c416232be87807bdcb29eb"); //$NON-NLS-1$
+    classChecksums.put(CodeGeneratorTests.LONG, "07311d55430332f5e3f63d3a9a948d22"); //$NON-NLS-1$
+    classChecksums.put(CodeGeneratorTests.ENUM, "23bc86b088b148798bc9fde183cfa187"); //$NON-NLS-1$
     final Map<String, String> testChecksums = new ConcurrentHashMap<>();
     testChecksums.put(CodeGeneratorTests.STRING, CodeGeneratorTests.D41D8CD98F00B204E9800998ECF8427E);
     testChecksums.put(CodeGeneratorTests.INT, CodeGeneratorTests.D41D8CD98F00B204E9800998ECF8427E);
@@ -156,11 +156,11 @@ final class CodeGeneratorTests
     CodeGenerator.main(args);
 
     final MessageDigest msgdigi = MessageDigest.getInstance("MD5"); //$NON-NLS-1$
-    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/Test3.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigi)) //$NON-NLS-1$
+    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/ddd/values/Test3.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigi)) //$NON-NLS-1$
      {
       inStream.transferTo(out);
      }
-    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/validation/values/test/Test3Tests.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigi)) //$NON-NLS-1$
+    try (BufferedInputStream inStream = new BufferedInputStream(Files.newInputStream(Paths.get("target/generated-sources/de/powerstat/ddd/values/test/Test3Tests.java"))); DigestOutputStream out = new DigestOutputStream(OutputStream.nullOutputStream(), msgdigi)) //$NON-NLS-1$
      {
       inStream.transferTo(out);
      }

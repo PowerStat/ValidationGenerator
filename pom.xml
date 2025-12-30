@@ -9,19 +9,19 @@
     <version>17.3.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>de.powerstat.validation</groupId>
+  <groupId>de.powerstat.ddd</groupId>
   <artifactId>generator</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>PowerStatsValidationGenerator</name>
-  <description>PowerStats validation generator.</description>
-  <url>https://www.powerstat.de/ValidationGenerator.html</url>
+  <name>PowerStatsValueObjectsGenerator</name>
+  <description>PowerStats value objects generator.</description>
+  <url>https://www.powerstat.de/ValueObjectsGenerator.html</url>
 
   <properties>
     <license.inceptionYear>2020</license.inceptionYear>
     <imageName>validationGenerator</imageName>
-    <mainClass>de.powerstat.validation.generator.CodeGenerator</mainClass>
+    <mainClass>de.powerstat.ddd.generator.CodeGenerator</mainClass>
     
     <classname>Test</classname>
     <classtype>string</classtype>
@@ -31,14 +31,14 @@
   <distributionManagement>
     <site>
       <id>powerstat</id>
-      <url>sftp://${web.server}/ValidationGenerator/</url>
+      <url>sftp://${web.server}/ValueObjectsGenerator/</url>
     </site>
   </distributionManagement>
 
   <scm>
-    <connection>scm:git:https://github.com/PowerStat/ValidationGenerator.git</connection>
-    <developerConnection>scm:git:https://github.com/PowerStat/ValidationGenerator.git</developerConnection>
-    <url>https://github.com/PowerStat/ValidationGenerator</url>
+    <connection>scm:git:https://github.com/PowerStat/ValueObjectsGenerator.git</connection>
+    <developerConnection>scm:git:https://github.com/PowerStat/ValueObjectsGenerator.git</developerConnection>
+    <url>https://github.com/PowerStat/ValueObjectsGenerator</url>
     <tag>HEAD</tag>
   </scm>
 
@@ -58,9 +58,9 @@
             <manifestEntries>
               <!-- <Build-Number>${buildNumber}</Build-Number> -->
               <Version>${project.version}</Version>
-              <GIT>https://github.com/PowerStat/ValidationGenerator.git</GIT>
+              <GIT>https://github.com/PowerStat/ValueObjectsGenerator.git</GIT>
               <SCM-Revision>${buildNumber}</SCM-Revision>
-              <Main-Class>de.powerstat.validation.generator.CodeGenerator</Main-Class>
+              <Main-Class>de.powerstat.ddd.generator.CodeGenerator</Main-Class>
             </manifestEntries>
             <addMavenDescriptor>false</addMavenDescriptor>
           </archive>
@@ -103,7 +103,7 @@
         </configuration>
         <dependencies>
           <dependency>
-            <groupId>de.powerstat.validation</groupId>
+            <groupId>de.powerstat.ddd</groupId>
             <artifactId>generator</artifactId>
             <version>1.0-SNAPSHOT</version>
           </dependency>
